@@ -1,1 +1,1 @@
-<p class="text-danger" role="alert">{{ $message }}</p>
+<p class="invalid-feedback">{{ $message }}</p>

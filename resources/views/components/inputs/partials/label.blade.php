@@ -1,3 +1,3 @@
-<label class="{{ ($required ?? false) ? 'label label-required ' : 'label ' }}" for="{{ $name }}">
+<label class="form-label {{ ($required ?? false) ? 'required' : '' }}">
     {{ $label }}
 </label>

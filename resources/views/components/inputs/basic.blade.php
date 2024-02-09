@@ -12,18 +12,15 @@
     @include('components.inputs.partials.label')
 @endif
 
-<input
-    type="{{ $type }}"
-    id="{{ $name }}"
-    name="{{ $name }}"
-    value="{{ old($name, $value ?? '') }}"
-    {{ ($required ?? false) ? 'required' : '' }}
+<input type="{{ $type }}" id="{{ $name }}" name="{{ $name }}" value="{{ old($name, $value ?? '') }}" {{ ($required ?? false) ? 'required' : '' }}
     {{ $attributes->merge(['class' => 'form-control']) }}
     {{ $min ? "min={$min}" : '' }}
     {{ $max ? "max={$max}" : '' }}
     {{ $step ? "step={$step}" : '' }}
-    autocomplete="off"
->
+    @error($name)
+        {{ $attributes->merge(['class' => 'is-invalid']) }}
+    @enderror
+    autocomplete="off" >
 
 @error($name)
     @include('components.inputs.partials.error')
