@@ -18,7 +18,7 @@
         @livewireStyles
     </head>
     
-    <body>
+    <body dir="rtl">
         <div id="app" class="page">
             <div class="sticky-top">
                 @include('layouts.nav')
