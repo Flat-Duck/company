@@ -2,9 +2,8 @@
     <x-inputs.group class="col-sm-12">
         <x-inputs.select
             name="main_folder_id"
-            label="Main Folder"
-            wire:model="selectedMainFolderId"
-        >
+            label="{{trans('crud.extoutboxes.inputs.main_folder_id')}}"
+            wire:model="selectedMainFolderId">
             <option selected>Please select the Main Folder</option>
             @foreach($allMainFolders as $id => $name)
             <option value="{{ $id }}">{{ $name }}</option>
@@ -15,9 +14,8 @@
     <x-inputs.group class="col-sm-12">
         <x-inputs.select
             name="sub_folder_id"
-            label="Sub Folder"
-            wire:model="selectedSubFolderId"
-        >
+            label="{{trans('crud.extoutboxes.inputs.sub_folder_id')}}"
+            wire:model="selectedSubFolderId">
             <option selected>Please select the Sub Folder</option>
             @foreach($allSubFolders as $id => $name)
             <option value="{{ $id }}">{{ $name }}</option>

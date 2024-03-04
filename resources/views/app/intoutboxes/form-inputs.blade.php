@@ -4,7 +4,7 @@
     <x-inputs.group class="col-sm-12">
         <x-inputs.text
             name="number"
-            label="Number"
+            label="{{trans('crud.intoutboxes.inputs.number')}}"
             :value="old('number', ($editing ? $intoutbox->number : ''))"
             maxlength="255"
             placeholder="Number"
@@ -15,7 +15,7 @@
     <x-inputs.group class="col-sm-12">
         <x-inputs.date
             name="registered_at"
-            label="Registered At"
+            label="{{trans('crud.intoutboxes.inputs.registered_at')}}"
             value="{{ old('registered_at', ($editing ? optional($intoutbox->registered_at)->format('Y-m-d') : '')) }}"
             max="255"
             required
@@ -25,7 +25,7 @@
     <x-inputs.group class="col-sm-12">
         <x-inputs.date
             name="issued_at"
-            label="Issued At"
+            label="{{trans('crud.intoutboxes.inputs.issued_at')}}"
             value="{{ old('issued_at', ($editing ? optional($intoutbox->issued_at)->format('Y-m-d') : '')) }}"
             max="255"
             required
@@ -35,10 +35,10 @@
     <x-inputs.group class="col-sm-12">
         <x-inputs.text
             name="sender"
-            label="Sender"
+            label="{{trans('crud.intoutboxes.inputs.sender')}}"
             :value="old('sender', ($editing ? $intoutbox->sender : ''))"
             maxlength="255"
-            placeholder="Sender"
+            placeholder="{{trans('crud.intoutboxes.inputs.number')}}"
             required
         ></x-inputs.text>
     </x-inputs.group>
@@ -46,10 +46,10 @@
     <x-inputs.group class="col-sm-12">
         <x-inputs.text
             name="receiver"
-            label="Receiver"
+            label="{{trans('crud.intoutboxes.inputs.receiver')}}"
             :value="old('receiver', ($editing ? $intoutbox->receiver : ''))"
             maxlength="255"
-            placeholder="Receiver"
+            placeholder="{{trans('crud.intoutboxes.inputs.receiver')}}"
             required
         ></x-inputs.text>
     </x-inputs.group>
@@ -57,7 +57,7 @@
     <x-inputs.group class="col-sm-12">
         <x-inputs.textarea
             name="subject"
-            label="Subject"
+            label="{{trans('crud.intoutboxes.inputs.subject')}}"
             maxlength="255"
             required
             >{{ old('subject', ($editing ? $intoutbox->subject : ''))
@@ -66,7 +66,7 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
-        <x-inputs.select name="company_status" label="Company Status">
+        <x-inputs.select name="company_status" label="{{trans('crud.intoutboxes.inputs.company_status')}}">
             @php $selected = old('company_status', ($editing ? $intoutbox->company_status : 'قائمة')) @endphp
             <option value="قائمة" {{ $selected == 'قائمة' ? 'selected' : '' }} ></option>
             <option value=" قيد التشطيب" {{ $selected == ' قيد التشطيب' ? 'selected' : '' }} ></option>
@@ -74,7 +74,7 @@
         </x-inputs.select>
     </x-inputs.group>
 
-    <x-inputs.group class="col-sm-12">
+    {{-- <x-inputs.group class="col-sm-12">
         <x-inputs.select name="main_folder_id" label="Main Folder" required>
             @php $selected = old('main_folder_id', ($editing ? $intoutbox->main_folder_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Main Folder</option>
@@ -92,8 +92,7 @@
             <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
             @endforeach
         </x-inputs.select>
-    </x-inputs.group>
+    </x-inputs.group> --}}
 
-    @livewire('selects.main-folder-id-sub-folder-id-dependent-select',
-    ['intoutbox' => $editing ? $intoutbox->id : null])
+    @livewire('selects.main-folder-id-sub-folder-id-dependent-select', ['obj' => $editing ? $intoutbox->id : null])
 </div>

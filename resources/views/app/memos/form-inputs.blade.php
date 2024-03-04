@@ -54,7 +54,7 @@
         >
     </x-inputs.group>
 
-    <x-inputs.group class="col-sm-12">
+    {{-- <x-inputs.group class="col-sm-12">
         <x-inputs.select name="main_folder_id" label="{{trans('crud.memos.inputs.main_folder_id')}}" required>
             @php $selected = old('main_folder_id', ($editing ? $memo->main_folder_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Main Folder</option>
@@ -72,8 +72,7 @@
             <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
             @endforeach
         </x-inputs.select>
-    </x-inputs.group>
+    </x-inputs.group> --}}
 
-    @livewire('selects.main-folder-id-sub-folder-id-dependent-select', ['memo'
-    => $editing ? $memo->id : null])
+    @livewire('selects.main-folder-id-sub-folder-id-dependent-select', ['obj' => $editing ? $memo->id : null])
 </div>

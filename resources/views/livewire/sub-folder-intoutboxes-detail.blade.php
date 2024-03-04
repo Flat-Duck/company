@@ -75,10 +75,10 @@
                     <x-inputs.group class="col-sm-12">
                         <x-inputs.text
                             name="intoutbox.receiver"
-                            label="Receiver"
+                            label="{{trans('crud.inboxes.inputs.receiver')}}"
                             wire:model="intoutbox.receiver"
                             maxlength="255"
-                            placeholder="Receiver"
+                            placeholder="{{trans('crud.inboxes.inputs.receiver')}}"
                         ></x-inputs.text>
                     </x-inputs.group>
 

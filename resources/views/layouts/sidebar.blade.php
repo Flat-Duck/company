@@ -53,32 +53,6 @@
                                     </a>
                                 </li>
                             @endcan
-                            @can('view-any', App\Models\MainFolder::class)
-                                <li class="nav-item {{ $page == 'main-folders'? 'active':''  }}">
-                                    <a class="nav-link" href="{{ route('main-folders.index') }}" >
-                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                            <!-- Download SVG icon from http://tabler-icons.io/i/Main Folders -->
-                                            <!-- Main Folders Icon -->
-                                        </span>
-                                        <span class="nav-link-title">
-                                            المجلدات الرئيسية
-                                        </span>
-                                    </a>
-                                </li>
-                            @endcan
-                            @can('view-any', App\Models\SubFolder::class)
-                                <li class="nav-item {{ $page == 'sub-folders'? 'active':''  }}">
-                                    <a class="nav-link" href="{{ route('sub-folders.index') }}" >
-                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                            <!-- Download SVG icon from http://tabler-icons.io/i/Sub Folders -->
-                                            <!-- Sub Folders Icon -->
-                                        </span>
-                                        <span class="nav-link-title">
-                                            المجلدات الفرعية
-                                        </span>
-                                    </a>
-                                </li>
-                            @endcan
                             @can('view-any', App\Models\Office::class)
                                 <li class="nav-item {{ $page == 'offices'? 'active':''  }}">
                                     <a class="nav-link" href="{{ route('offices.index') }}" >
@@ -92,19 +66,41 @@
                                     </a>
                                 </li>
                             @endcan
-                            @can('view-any', App\Models\Extoutbox::class)
-                                <li class="nav-item {{ $page == 'extoutboxes'? 'active':''  }}">
-                                    <a class="nav-link" href="{{ route('extoutboxes.index') }}" >
+                            @if (Auth::user()->can('view-any', App\Models\Extoutbox::class) || 
+                                Auth::user()->can('view-any', App\Models\Intoutbox::class))
+                                <li class="nav-item dropdown @if ($page == 'extoutboxes' || $page == 'intoutboxes') active @endif ">
+                                    <a class="nav-link dropdown-toggle" href="#navbar-access" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                            <!-- Download SVG icon from http://tabler-icons.io/i/Extoutboxes -->
-                                            <!-- Extoutboxes Icon -->
+                                            <i class="ti ti-lock-access"></i>
                                         </span>
                                         <span class="nav-link-title">
-                                            صادر خارجي
+                                            الصادر
                                         </span>
                                     </a>
+                                    <div class="dropdown-menu">
+                                        @can('view-any', App\Models\Extoutbox::class)
+                                            <a class="dropdown-item" href="{{ route('extoutboxes.index') }}" rel="noopener">
+                                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                                    <i class="ti ti-user-check"></i>       
+                                                </span>
+                                                <span class="nav-link-title">
+                                                    صادر خارجي 
+                                                </span>
+                                            </a>
+                                        @endcan
+                                        @can('view-any', App\Models\Intoutbox::class)
+                                            <a class="dropdown-item" href="{{ route('intoutboxes.index') }}">
+                                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                                    <i class="ti ti-key"></i>
+                                                </span>
+                                                <span class="nav-link-title">
+                                                    صادر داخلي
+                                                </span>
+                                            </a>
+                                        @endcan
+                                    </div>
                                 </li>
-                            @endcan
+                            @endif
                             @can('view-any', App\Models\Inbox::class)
                                 <li class="nav-item {{ $page == 'inboxes'? 'active':''  }}">
                                     <a class="nav-link" href="{{ route('inboxes.index') }}" >
@@ -118,7 +114,20 @@
                                     </a>
                                 </li>
                             @endcan
-                            @can('view-any', App\Models\Intoutbox::class)
+                            {{-- @can('view-any', App\Models\Extoutbox::class)
+                                <li class="nav-item {{ $page == 'extoutboxes'? 'active':''  }}">
+                                    <a class="nav-link" href="{{ route('extoutboxes.index') }}" >
+                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                            <!-- Download SVG icon from http://tabler-icons.io/i/Extoutboxes -->
+                                            <!-- Extoutboxes Icon -->
+                                        </span>
+                                        <span class="nav-link-title">
+                                            
+                                        </span>
+                                    </a>
+                                </li>
+                            @endcan --}}
+                            {{-- @can('view-any', App\Models\Intoutbox::class)
                                 <li class="nav-item {{ $page == 'intoutboxes'? 'active':''  }}">
                                     <a class="nav-link" href="{{ route('intoutboxes.index') }}" >
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -126,11 +135,11 @@
                                             <!-- Intoutboxes Icon -->
                                         </span>
                                         <span class="nav-link-title">
-                                            صادر داخلي
+                                            
                                         </span>
                                     </a>
                                 </li>
-                            @endcan
+                            @endcan --}}
                             @can('view-any', App\Models\Memo::class)
                                 <li class="nav-item {{ $page == 'memos'? 'active':''  }}">
                                     <a class="nav-link" href="{{ route('memos.index') }}" >
@@ -144,6 +153,41 @@
                                     </a>
                                 </li>
                             @endcan
+                            @if (Auth::user()->can('view-any', App\Models\MainFolder::class) || 
+                            Auth::user()->can('view-any', App\Models\SubFolder::class))
+                            <li class="nav-item dropdown @if ($page == 'main-folders' || $page == 'sub-folders') active @endif ">
+                                <a class="nav-link dropdown-toggle" href="#navbar-access" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                        <i class="ti ti-lock-access"></i>
+                                    </span>
+                                    <span class="nav-link-title">
+                                        المجلدات
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu">
+                                    @can('view-any', App\Models\MainFolder::class)
+                                        <a class="dropdown-item" href="{{ route('main-folders.index') }}" rel="noopener">
+                                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                                <i class="ti ti-user-check"></i>       
+                                            </span>
+                                            <span class="nav-link-title">
+                                                المجلدات الرئيسية
+                                            </span>
+                                        </a>
+                                    @endcan
+                                    @can('view-any', App\Models\SubFolder::class)
+                                        <a class="dropdown-item" href="{{ route('sub-folders.index') }}">
+                                            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                                <i class="ti ti-key"></i>
+                                            </span>
+                                            <span class="nav-link-title">
+                                                المجلدات الفرعية
+                                            </span>
+                                        </a>
+                                    @endcan
+                                </div>
+                            </li>
+                        @endif
                             @can('view-any', App\Models\Attachment::class)
                                 <li class="nav-item {{ $page == 'attachments'? 'active':''  }}">
                                     <a class="nav-link" href="{{ route('attachments.index') }}" >

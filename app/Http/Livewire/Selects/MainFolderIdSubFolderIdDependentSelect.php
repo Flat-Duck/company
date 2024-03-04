@@ -2,12 +2,15 @@
 
 namespace App\Http\Livewire\Selects;
 
-use App\Models\Memo;
-use Livewire\Component;
-use Illuminate\View\View;
-use App\Models\SubFolder;
+use App\Models\Extoutbox;
+use App\Models\Inbox;
+use App\Models\Intoutbox;
 use App\Models\MainFolder;
+use App\Models\Memo;
+use App\Models\SubFolder;
+use Illuminate\View\View;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Livewire\Component;
 
 class MainFolderIdSubFolderIdDependentSelect extends Component
 {
@@ -24,21 +27,39 @@ class MainFolderIdSubFolderIdDependentSelect extends Component
         'selectedSubFolderId' => ['nullable', 'exists:sub_folders,id'],
     ];
 
-    public function mount($memo): void
+    public function mount($obj): void
     {
         $this->clearData();
         $this->fillAllMainFolders();
 
-        if (is_null($memo)) {
+        if (is_null($obj)) {
             return;
         }
+        
+        if ($obj instanceof Extoutbox) {
+            
+            $obj = Extoutbox::findOrFail($obj);
 
-        $memo = Memo::findOrFail($memo);
+        } elseif ($obj instanceof Intoutbox) {
+            
+            $obj = Intoutbox::findOrFail($obj);
 
-        $this->selectedMainFolderId = $memo->main_folder_id;
+        } elseif ($obj instanceof Inbox) {
+            
+            $obj = Inbox::findOrFail($obj);
+        
+        } elseif ($obj instanceof Memo) {
+            
+            $obj = Memo::findOrFail($obj);
+        
+        }
+
+        
+
+        $this->selectedMainFolderId = $obj->main_folder_id;
 
         $this->fillAllSubFolders();
-        $this->selectedSubFolderId = $memo->sub_folder_id;
+        $this->selectedSubFolderId = $obj->sub_folder_id;
     }
 
     public function updatedSelectedMainFolderId(): void
