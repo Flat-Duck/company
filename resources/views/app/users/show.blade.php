@@ -35,6 +35,18 @@
                                 disabled=""
                             />
                         </div>
+                        <div class="mb-3">
+                            <label class="form-label"
+                                >@lang('crud.roles.name')</label
+                            >
+                            @forelse ($user->roles as $role)
+                            <h2>
+                                <span class="badge bg-azure-lt"
+                                    >{{ $role->name }}</span
+                                >
+                            </h2>
+                            @empty - @endforelse
+                        </div>
                     </div>
                 </div>
             </div>

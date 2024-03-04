@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 
 class UserController extends Controller
 {
@@ -35,25 +37,25 @@ class UserController extends Controller
     {
         $this->authorize('create', User::class);
 
-        return view('app.users.create');
+        $roles = Role::get();
+
+        return view('app.users.create', compact('roles'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(UserStoreRequest $request): RedirectResponse
     {
         $this->authorize('create', User::class);
 
-        $validated = $request->validate([
-            'name' => ['required', 'max:255', 'string'],
-            'email' => ['required', 'unique:users,email', 'email'],
-            'password' => ['required'],
-        ]);
+        $validated = $request->validated();
 
         $validated['password'] = Hash::make($validated['password']);
 
         $user = User::create($validated);
+
+        $user->syncRoles($request->roles);
 
         return redirect()
             ->route('users.edit', $user)
@@ -77,25 +79,21 @@ class UserController extends Controller
     {
         $this->authorize('update', $user);
 
-        return view('app.users.edit', compact('user'));
+        $roles = Role::get();
+
+        return view('app.users.edit', compact('user', 'roles'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user): RedirectResponse
-    {
+    public function update(
+        UserUpdateRequest $request,
+        User $user
+    ): RedirectResponse {
         $this->authorize('update', $user);
 
-        $validated = $request->validate([
-            'name' => ['required', 'max:255', 'string'],
-            'email' => [
-                'required',
-                Rule::unique('users', 'email')->ignore($user),
-                'email',
-            ],
-            'password' => ['nullable'],
-        ]);
+        $validated = $request->validated();
 
         if (empty($validated['password'])) {
             unset($validated['password']);
@@ -104,6 +102,8 @@ class UserController extends Controller
         }
 
         $user->update($validated);
+
+        $user->syncRoles($request->roles);
 
         return redirect()
             ->route('users.edit', $user)
