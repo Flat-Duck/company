@@ -5,18 +5,18 @@
         </button>
         <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
             <a href="{{ url('/') }}">
-                <img src="./static/logo.svg" width="110" height="32" alt="company" class="navbar-brand-image">
+                <img src="/img/logo-bx.png" width="110" height="32" alt="company" class="navbar-brand-image">
             </a>
         </h1>
         <div class="navbar-nav flex-row order-md-last">
-            <div class="nav-item d-none d-md-flex me-3">
+            {{-- <div class="nav-item d-none d-md-flex me-3">
                 <div class="btn-list">
                 <a href="https://github.com/sponsors/codecalm" class="btn" target="_blank" rel="noreferrer">
                     <i class="ti ti-heart text-pink"></i>
                     Sponsor
                 </a>
             </div>
-        </div>
+        </div> --}}
         <div class="d-none d-md-flex">
             <a href="?theme=dark" class="nav-link px-0 hide-theme-dark" title="Enable dark mode" data-bs-toggle="tooltip" data-bs-placement="bottom">
                 <i class="ti ti-moon"></i>

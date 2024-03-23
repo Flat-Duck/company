@@ -30,7 +30,7 @@
                     <div class="input-group input-group-flat @error('password') is-invalid @enderror">
                         <input type="password" placeholder="Enter password" id="password"  class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="password" autofocus>
                         <span class="input-group-text">
-                            <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip">
+                            <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip" onclick="showPassword()">
                                 <i class="ti ti-eye"></i>
                             </a>
                         </span>
@@ -52,7 +52,7 @@
                 </div>
             </form>
         </div>
-        <div class="hr-text">or</div>
+        {{-- <div class="hr-text">or</div>
         <div class="card-body">
             <div class="row">
                 <div class="col">
@@ -68,7 +68,7 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
     <div class="text-center text-secondary mt-3">
         Don't have account yet? <a href="{{ route('register') }}" tabindex="-1">Register</a>

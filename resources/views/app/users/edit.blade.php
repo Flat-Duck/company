@@ -28,7 +28,7 @@
                 >@lang('crud.common.back')</a
             >
             @can('create', App\Models\User::class)
-            <a href="{{ route('users.create') }}" class="btn btn-link">
+            <a href="{{ route('users.create') }}" class="btn btn-info">
                 @lang('crud.common.create')
             </a>
             @endcan

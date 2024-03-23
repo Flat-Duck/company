@@ -32,7 +32,7 @@
                 >@lang('crud.common.back')</a
             >
             @can('create', App\Models\Office::class)
-            <a href="{{ route('offices.create') }}" class="btn btn-link">
+            <a href="{{ route('offices.create') }}" class="btn btn-info">
                 @lang('crud.common.create')
             </a>
             @endcan

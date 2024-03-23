@@ -32,7 +32,7 @@
                 >@lang('crud.common.back')</a
             >
             @can('create', App\Models\SubFolder::class)
-            <a href="{{ route('sub-folders.create') }}" class="btn btn-link">
+            <a href="{{ route('sub-folders.create') }}" class="btn btn-info">
                 @lang('crud.common.create')
             </a>
             @endcan

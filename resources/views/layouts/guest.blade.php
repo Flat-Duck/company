@@ -16,7 +16,7 @@
     @livewireStyles
   </head>
   <body>
-  <body class=" d-flex flex-column">
+  <body dir="rtl" class=" d-flex flex-column">
     <div class="page page-center">
       <div class="container container-tight py-4">
         <div class="text-center mb-4">
@@ -34,10 +34,20 @@
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
     @if (session()->has('success')) 
-    <script>
+    <script>   
         var notyf = new Notyf({dismissible: true})
         notyf.success('{{ session('success') }}')
     </script> 
     @endif
+    <script>
+      function showPassword() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+          x.type = "text";
+        } else {
+          x.type = "password";
+        }
+      }          
+      </script> 
   </body>
 </html>

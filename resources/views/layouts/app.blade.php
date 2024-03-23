@@ -41,7 +41,7 @@
                         @yield('content')
                     </div>
                 </div>
-                @include('layouts.footer')
+                {{-- @include('layouts.footer') --}}
             </div>
         </div>
 
@@ -59,7 +59,16 @@
             notyf.success('{{ session('success') }}')
         </script> 
         @endif
-
+        <script>
+            function showPassword() {
+              var x = document.getElementById("password");
+              if (x.type === "password") {
+                x.type = "text";
+              } else {
+                x.type = "password";
+              }
+            }          
+            </script> 
         <script>
             /* Simple Alpine Image Viewer */
             document.addEventListener('alpine:init', () => {

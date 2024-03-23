@@ -10,7 +10,7 @@
                                     <i class="ti ti-home"></i>
                                 </span>
                                 <span class="nav-link-title">
-                                    ارئيسية
+                                    الرئيسية
                                 </span>
                             </a>
                         </li>
@@ -19,7 +19,7 @@
                                     <a class="nav-link" href="{{ route('users.index') }}" >
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                             <!-- Download SVG icon from http://tabler-icons.io/i/Users -->
-                                            <!-- Users Icon -->
+                                            <i class="ti ti-users"></i>
                                         </span>
                                         <span class="nav-link-title">
                                             المستخدمين
@@ -32,7 +32,7 @@
                                     <a class="nav-link" href="{{ route('administrations.index') }}" >
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                             <!-- Download SVG icon from http://tabler-icons.io/i/Administrations -->
-                                            <!-- Administrations Icon -->
+                                            <i class="ti ti-building-skyscraper"></i>
                                         </span>
                                         <span class="nav-link-title">
                                             الادارات
@@ -45,7 +45,7 @@
                                     <a class="nav-link" href="{{ route('departments.index') }}" >
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                             <!-- Download SVG icon from http://tabler-icons.io/i/Departments -->
-                                            <!-- Departments Icon -->
+                                            <i class="ti ti-desk"></i>
                                         </span>
                                         <span class="nav-link-title">
                                             الاقسام
@@ -58,7 +58,7 @@
                                     <a class="nav-link" href="{{ route('offices.index') }}" >
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                             <!-- Download SVG icon from http://tabler-icons.io/i/Offices -->
-                                            <!-- Offices Icon -->
+                                            <i class="ti ti-desk"></i>
                                         </span>
                                         <span class="nav-link-title">
                                             المكاتب
@@ -71,7 +71,7 @@
                                 <li class="nav-item dropdown @if ($page == 'extoutboxes' || $page == 'intoutboxes') active @endif ">
                                     <a class="nav-link dropdown-toggle" href="#navbar-access" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                            <i class="ti ti-lock-access"></i>
+                                            <i class="ti ti-outbound"></i>
                                         </span>
                                         <span class="nav-link-title">
                                             الصادر
@@ -81,7 +81,7 @@
                                         @can('view-any', App\Models\Extoutbox::class)
                                             <a class="dropdown-item" href="{{ route('extoutboxes.index') }}" rel="noopener">
                                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                                    <i class="ti ti-user-check"></i>       
+                                                    <i class="ti ti-external-link"></i>
                                                 </span>
                                                 <span class="nav-link-title">
                                                     صادر خارجي 
@@ -91,7 +91,7 @@
                                         @can('view-any', App\Models\Intoutbox::class)
                                             <a class="dropdown-item" href="{{ route('intoutboxes.index') }}">
                                                 <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                                    <i class="ti ti-key"></i>
+                                                    <i class="ti ti-external-link-off"></i>
                                                 </span>
                                                 <span class="nav-link-title">
                                                     صادر داخلي
@@ -106,7 +106,7 @@
                                     <a class="nav-link" href="{{ route('inboxes.index') }}" >
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                             <!-- Download SVG icon from http://tabler-icons.io/i/Inboxes -->
-                                            <!-- Inboxes Icon -->
+                                            <i class="ti ti-inbox"></i>
                                         </span>
                                         <span class="nav-link-title">
                                             الوارد
@@ -145,7 +145,7 @@
                                     <a class="nav-link" href="{{ route('memos.index') }}" >
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                             <!-- Download SVG icon from http://tabler-icons.io/i/Memos -->
-                                            <!-- Memos Icon -->
+                                            <i class="ti ti-clipboard-typography"></i>
                                         </span>
                                         <span class="nav-link-title">
                                             معاملات اخرى
@@ -158,7 +158,7 @@
                             <li class="nav-item dropdown @if ($page == 'main-folders' || $page == 'sub-folders') active @endif ">
                                 <a class="nav-link dropdown-toggle" href="#navbar-access" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                                     <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                        <i class="ti ti-lock-access"></i>
+                                        <i class="ti ti-folders"></i>
                                     </span>
                                     <span class="nav-link-title">
                                         المجلدات
@@ -168,7 +168,7 @@
                                     @can('view-any', App\Models\MainFolder::class)
                                         <a class="dropdown-item" href="{{ route('main-folders.index') }}" rel="noopener">
                                             <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                                <i class="ti ti-user-check"></i>       
+                                                <i class="ti ti-folder-up"></i>
                                             </span>
                                             <span class="nav-link-title">
                                                 المجلدات الرئيسية
@@ -178,7 +178,7 @@
                                     @can('view-any', App\Models\SubFolder::class)
                                         <a class="dropdown-item" href="{{ route('sub-folders.index') }}">
                                             <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                                <i class="ti ti-key"></i>
+                                                <i class="ti ti-folder-down"></i>
                                             </span>
                                             <span class="nav-link-title">
                                                 المجلدات الفرعية
@@ -193,7 +193,7 @@
                                     <a class="nav-link" href="{{ route('attachments.index') }}" >
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                                             <!-- Download SVG icon from http://tabler-icons.io/i/Attachments -->
-                                            <!-- Attachments Icon -->
+                                            <i class="ti ti-paperclip"></i>
                                         </span>
                                         <span class="nav-link-title">
                                             المرفقات
@@ -209,7 +209,7 @@
                                             <i class="ti ti-lock-access"></i>
                                         </span>
                                         <span class="nav-link-title">
-                                            Access Management
+                                              الصلاحيات و الادوار
                                         </span>
                                     </a>
                                     <div class="dropdown-menu">
@@ -219,7 +219,7 @@
                                                     <i class="ti ti-user-check"></i>       
                                                 </span>
                                                 <span class="nav-link-title">
-                                                    Roles
+                                                    الادوار
                                                 </span>
                                             </a>
                                         @endcan
@@ -229,7 +229,7 @@
                                                     <i class="ti ti-key"></i>
                                                 </span>
                                                 <span class="nav-link-title">
-                                                    Permissions
+                                                    الصلاحيات
                                                 </span>
                                             </a>
                                         @endcan

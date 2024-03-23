@@ -34,7 +34,7 @@
             @can('create', App\Models\Administration::class)
             <a
                 href="{{ route('administrations.create') }}"
-                class="btn btn-link"
+                class="btn btn-info"
             >
                 @lang('crud.common.create')
             </a>

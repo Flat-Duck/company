@@ -28,7 +28,7 @@
                 >@lang('crud.common.back')</a
             >
             @can('create', App\Models\Inbox::class)
-            <a href="{{ route('inboxes.create') }}" class="btn btn-link">
+            <a href="{{ route('inboxes.create') }}" class="btn btn-info">
                 @lang('crud.common.create')
             </a>
             @endcan

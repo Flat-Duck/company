@@ -32,7 +32,7 @@
                 >@lang('crud.common.back')</a
             >
             @can('create', App\Models\Permission::class)
-            <a href="{{ route('permissions.create') }}" class="btn btn-link">
+            <a href="{{ route('permissions.create') }}" class="btn btn-info">
                 @lang('crud.common.create')
             </a>
             @endcan

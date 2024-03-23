@@ -32,7 +32,7 @@
                 >@lang('crud.common.back')</a
             >
             @can('create', App\Models\Extoutbox::class)
-            <a href="{{ route('extoutboxes.create') }}" class="btn btn-link">
+            <a href="{{ route('extoutboxes.create') }}" class="btn btn-info">
                 @lang('crud.common.create')
             </a>
             @endcan
