@@ -80,9 +80,9 @@
         <x-inputs.select name="company_status" label="{{trans('crud.inboxes.inputs.company_status')}}">
             @php $selected = old('company_status', ($editing ? $inbox->company_status : 'قائمة')) @endphp
             <option value="لايوجد" {{ $selected == 'لايوجد' ? 'selected' : '' }} >لايوجد</option>
-            <option value="قائمة" {{ $selected == 'قائمة' ? 'selected' : '' }} ></option>
-            <option value="قيد التشطيب" {{ $selected == 'قيد التشطيب' ? 'selected' : '' }} ></option>
-            <option value="تم شطبها" {{ $selected == 'تم شطبها' ? 'selected' : '' }} ></option>
+            <option value="قائمة" {{ $selected == 'قائمة' ? 'selected' : '' }} >قائمة</option>
+            <option value="قيد التشطيب" {{ $selected == 'قيد التشطيب' ? 'selected' : '' }} >قيد التشطيب</option>
+            <option value="تم شطبها" {{ $selected == 'تم شطبها' ? 'selected' : '' }} >تم شطبها</option>
         </x-inputs.select>
     </x-inputs.group>
 
