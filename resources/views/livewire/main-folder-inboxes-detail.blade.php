@@ -108,6 +108,7 @@
                             label="Company Status"
                             wire:model="inbox.company_status"
                         >
+                        <option value="لايوجد" {{ $selected == 'لايوجد' ? 'selected' : '' }} >لايوجد</option>
                             <option value="قائمة" {{ $selected == 'قائمة' ? 'selected' : '' }} ></option>
                             <option value="قيد التشطيب" {{ $selected == 'قيد التشطيب' ? 'selected' : '' }} ></option>
                             <option value="تم شطبها" {{ $selected == 'تم شطبها' ? 'selected' : '' }} ></option>

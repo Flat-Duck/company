@@ -63,8 +63,12 @@ class SubFolderController extends Controller
     public function show(Request $request, SubFolder $subFolder): View
     {
         $this->authorize('view', $subFolder);
+        $intouts = $subFolder->intoutboxes()->paginate(5);
+        $extouts = $subFolder->extoutboxes()->paginate(5);
+        $inboxes = $subFolder->inboxes()->paginate(5);
+        $memos = $subFolder->memos()->paginate(5);
 
-        return view('app.sub_folders.show', compact('subFolder'));
+        return view('app.sub_folders.show', compact('subFolder', 'intouts', 'extouts','inboxes', 'memos'));
     }
 
     /**

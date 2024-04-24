@@ -1,3 +1,7 @@
-<label class="form-label {{ ($required ?? false) ? 'required' : '' }}">
+@props([
+    'required' => false
+])
+
+<label class="form-label {{ $required ? 'required' : '' }}">
     {{ $label }}
 </label>

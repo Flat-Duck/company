@@ -60,8 +60,9 @@ class MainFolderController extends Controller
     public function show(Request $request, MainFolder $mainFolder): View
     {
         $this->authorize('view', $mainFolder);
+        $subFolders = $mainFolder->subFolders()->paginate(10);
 
-        return view('app.main_folders.show', compact('mainFolder'));
+        return view('app.main_folders.show', compact('mainFolder','subFolders'));
     }
 
     /**

@@ -14,7 +14,42 @@
                                 </span>
                             </a>
                         </li>
-                            @can('view-any', App\Models\User::class)
+                        @if (Auth::user()->can('view-any', Spatie\Permission\Models\Role::class) || 
+                            Auth::user()->can('view-any', App\Models\User::class))
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#navbar-access" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                            <i class="ti ti-users"></i>
+                                        </span>
+                                        <span class="nav-link-title">
+                                            إدارة المستخدمين
+                                        </span>
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        @can('view-any', App\Models\User::class)
+                                            <a class="dropdown-item" href="{{ route('users.index') }}">
+                                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                                    <i class="ti ti-users"></i>
+                                                </span>
+                                                <span class="nav-link-title">
+                                                    المستخدمين
+                                                </span>
+                                            </a>
+                                        @endcan
+                                        @can('view-any', Spatie\Permission\Models\Role::class)
+                                            <a class="dropdown-item" href="{{ route('roles.index') }}" rel="noopener">
+                                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                                    <i class="ti ti-user-check"></i>       
+                                                </span>
+                                                <span class="nav-link-title">
+                                                    الادوار
+                                                </span>
+                                            </a>
+                                        @endcan
+                                    </div>
+                                </li>
+                            @endif
+                            {{-- @can('view-any', )
                                 <li class="nav-item {{ $page == 'users'? 'active':''  }}">
                                     <a class="nav-link" href="{{ route('users.index') }}" >
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -26,7 +61,7 @@
                                         </span>
                                     </a>
                                 </li>
-                            @endcan
+                            @endcan --}}
                             @can('view-any', App\Models\Administration::class)
                                 <li class="nav-item {{ $page == 'administrations'? 'active':''  }}">
                                     <a class="nav-link" href="{{ route('administrations.index') }}" >
@@ -67,41 +102,64 @@
                                 </li>
                             @endcan
                             @if (Auth::user()->can('view-any', App\Models\Extoutbox::class) || 
-                                Auth::user()->can('view-any', App\Models\Intoutbox::class))
-                                <li class="nav-item dropdown @if ($page == 'extoutboxes' || $page == 'intoutboxes') active @endif ">
-                                    <a class="nav-link dropdown-toggle" href="#navbar-access" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
-                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                            <i class="ti ti-outbound"></i>
-                                        </span>
-                                        <span class="nav-link-title">
-                                            الصادر
-                                        </span>
-                                    </a>
-                                    <div class="dropdown-menu">
-                                        @can('view-any', App\Models\Extoutbox::class)
-                                            <a class="dropdown-item" href="{{ route('extoutboxes.index') }}" rel="noopener">
-                                                <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                                    <i class="ti ti-external-link"></i>
-                                                </span>
-                                                <span class="nav-link-title">
-                                                    صادر خارجي 
-                                                </span>
-                                            </a>
-                                        @endcan
-                                        @can('view-any', App\Models\Intoutbox::class)
-                                            <a class="dropdown-item" href="{{ route('intoutboxes.index') }}">
-                                                <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                                    <i class="ti ti-external-link-off"></i>
-                                                </span>
-                                                <span class="nav-link-title">
-                                                    صادر داخلي
-                                                </span>
-                                            </a>
-                                        @endcan
-                                    </div>
-                                </li>
-                            @endif
-                            @can('view-any', App\Models\Inbox::class)
+                            Auth::user()->can('view-any', App\Models\Intoutbox::class) ||
+                            Auth::user()->can('view-any', App\Models\Inbox::class) ||
+                            Auth::user()->can('view-any', App\Models\Memo::class))
+                           <li class="nav-item dropdown @if ($page == 'extoutboxes' || $page == 'intoutboxes' || $page == 'inboxes' || $page == 'memos') active @endif ">
+                               <a class="nav-link dropdown-toggle" href="#navbar-access" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                   <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                       <i class="ti ti-outbound"></i>
+                                   </span>
+                                   <span class="nav-link-title">
+                                       إدارة المعاملات
+                                   </span>
+                               </a>
+                               <div class="dropdown-menu">
+                                   @can('view-any', App\Models\Inbox::class)
+                                       <a class="dropdown-item" href="{{ route('inboxes.index') }}" rel="noopener">
+                                           <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                               <i class="ti ti-inbox"></i>
+                                           </span>
+                                           <span class="nav-link-title">
+                                               الوارد
+                                           </span>
+                                       </a>
+                                   @endcan
+                                   @can('view-any', App\Models\Extoutbox::class)
+                                       <a class="dropdown-item" href="{{ route('extoutboxes.index') }}" rel="noopener">
+                                           <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                               <i class="ti ti-external-link"></i>
+                                           </span>
+                                           <span class="nav-link-title">
+                                               صادر خارجي 
+                                           </span>
+                                       </a>
+                                   @endcan
+                                   @can('view-any', App\Models\Intoutbox::class)
+                                       <a class="dropdown-item" href="{{ route('intoutboxes.index') }}">
+                                           <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                               <i class="ti ti-external-link-off"></i>
+                                           </span>
+                                           <span class="nav-link-title">
+                                               صادر داخلي
+                                           </span>
+                                       </a>
+                                   @endcan
+                                   @can('view-any', App\Models\Intoutbox::class)
+                                       <a class="dropdown-item" href="{{ route('memos.index') }}">
+                                           <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                               <i class="ti ti-clipboard-typography"></i>
+                                           </span>
+                                           <span class="nav-link-title">
+                                               معاملات اخرى
+                                           </span>
+                                       </a>
+                                   @endcan
+                                  
+                               </div>
+                           </li>
+                       @endif
+                            {{-- @can('view-any', App\Models\Inbox::class)
                                 <li class="nav-item {{ $page == 'inboxes'? 'active':''  }}">
                                     <a class="nav-link" href="{{ route('inboxes.index') }}" >
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -113,7 +171,7 @@
                                         </span>
                                     </a>
                                 </li>
-                            @endcan
+                            @endcan --}}
                             {{-- @can('view-any', App\Models\Extoutbox::class)
                                 <li class="nav-item {{ $page == 'extoutboxes'? 'active':''  }}">
                                     <a class="nav-link" href="{{ route('extoutboxes.index') }}" >
@@ -140,7 +198,7 @@
                                     </a>
                                 </li>
                             @endcan --}}
-                            @can('view-any', App\Models\Memo::class)
+                            {{-- @can('view-any', App\Models\Memo::class)
                                 <li class="nav-item {{ $page == 'memos'? 'active':''  }}">
                                     <a class="nav-link" href="{{ route('memos.index') }}" >
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -152,7 +210,7 @@
                                         </span>
                                     </a>
                                 </li>
-                            @endcan
+                            @endcan --}}
                             @if (Auth::user()->can('view-any', App\Models\MainFolder::class) || 
                             Auth::user()->can('view-any', App\Models\SubFolder::class))
                             <li class="nav-item dropdown @if ($page == 'main-folders' || $page == 'sub-folders') active @endif ">
@@ -166,6 +224,29 @@
                                 </a>
                                 <div class="dropdown-menu">
                                     @can('view-any', App\Models\MainFolder::class)
+                                        <div class="dropend">
+                                            <a class="dropdown-item dropdown-toggle" href="#sidebar-authentication" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="true">
+                                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                                    <i class="ti ti-folder-up"></i>
+                                                </span>
+                                                <span class="nav-link-title">
+                                                    المجلدات الرئيسية
+                                                </span>
+                                            </a>
+                                            <div class="dropdown-menu" data-bs-popper="static">
+                                                <a href="{{ route('main-folders.index') }}" class="dropdown-item">
+                                                    عرض الكل
+                                                </a>
+                                                @foreach (App\Models\MainFolder::all() as $folder)
+                                                <a href="{{ route('main-folders.show', $folder) }}" class="dropdown-item">
+                                                    {{ $folder->name }}
+                                                </a>
+                                                    
+                                                @endforeach                                                
+                                            </div>
+                                        </div>
+                                    @endcan
+                                    {{-- @can('view-any', App\Models\MainFolder::class)
                                         <a class="dropdown-item" href="{{ route('main-folders.index') }}" rel="noopener">
                                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                                 <i class="ti ti-folder-up"></i>
@@ -174,7 +255,7 @@
                                                 المجلدات الرئيسية
                                             </span>
                                         </a>
-                                    @endcan
+                                    @endcan --}}
                                     @can('view-any', App\Models\SubFolder::class)
                                         <a class="dropdown-item" href="{{ route('sub-folders.index') }}">
                                             <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -188,7 +269,7 @@
                                 </div>
                             </li>
                         @endif
-                            @can('view-any', App\Models\Attachment::class)
+                            {{-- @can('view-any', App\Models\Attachment::class)
                                 <li class="nav-item {{ $page == 'attachments'? 'active':''  }}">
                                     <a class="nav-link" href="{{ route('attachments.index') }}" >
                                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -200,8 +281,8 @@
                                         </span>
                                     </a>
                                 </li>
-                            @endcan
-                            @if (Auth::user()->can('view-any', Spatie\Permission\Models\Role::class) || 
+                            @endcan --}}
+                            {{-- @if (Auth::user()->can('view-any', Spatie\Permission\Models\Role::class) || 
                             Auth::user()->can('view-any', Spatie\Permission\Models\Permission::class))
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#navbar-access" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
@@ -235,7 +316,7 @@
                                         @endcan
                                     </div>
                                 </li>
-                            @endif
+                            @endif --}}
                     @endauth
                 </ul>
             </div>

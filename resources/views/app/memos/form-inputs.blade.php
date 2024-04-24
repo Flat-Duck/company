@@ -1,16 +1,19 @@
 @php $editing = isset($memo) @endphp
 
 <div class="row">
-    <x-inputs.group class="col-sm-12">
-        <x-inputs.text
-            name="number"
-            label="{{trans('crud.memos.inputs.number')}}"
-            :value="old('number', ($editing ? $memo->number : ''))"
-            maxlength="255"
+    <div class="mb-3 col-sm-12">
+        <label class="form-label">{{trans('crud.memos.inputs.number')}}</label>
+        <div class="input-group input-group-flat">
+            <input name="number" type="text" 
             placeholder="{{trans('crud.memos.inputs.number')}}"
-            required
-        ></x-inputs.text>
-    </x-inputs.group>
+            value="{{old('number', ($editing ? $intoutbox->number : ''))}}"
+            class="form-control text-end pe-0" 
+            autocomplete="off" required >
+            <span class="input-group-text">
+                 / IEXP / 2024  
+            </span>
+        </div>
+    </div>
 
     <x-inputs.group class="col-sm-12">
         <x-inputs.date
@@ -74,5 +77,5 @@
         </x-inputs.select>
     </x-inputs.group> --}}
 
-    @livewire('selects.main-folder-id-sub-folder-id-dependent-select', ['obj' => $editing ? $memo->id : null])
+    @livewire('selects.main-folder-id-sub-folder-id-dependent-select', ['obj' => $editing ? $memo : null])
 </div>

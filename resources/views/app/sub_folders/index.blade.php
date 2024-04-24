@@ -15,7 +15,7 @@
                             type="text"
                             value=""
                             class="form-control"
-                            placeholder="Search…"
+                            placeholder="بحث ...."
                             aria-label="Search..."
                             spellcheck="false"
                             data-ms-editor="true"
@@ -87,7 +87,8 @@
                             >
                                 <i class="ti ti-eye"></i>
                             </a>
-                            @endcan @can('delete', $subFolder)
+                            @endcan 
+                            {{-- @can('delete', $subFolder)
                             <form
                                 action="{{ route('sub-folders.destroy', $subFolder) }}"
                                 method="POST"
@@ -102,7 +103,7 @@
                                     <i class="ti ti-trash-x"></i>
                                 </button>
                             </form>
-                            @endcan
+                            @endcan --}}
                         </div>
                     </td>
                 </tr>

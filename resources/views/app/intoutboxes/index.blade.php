@@ -15,7 +15,7 @@
                             type="text"
                             value=""
                             class="form-control"
-                            placeholder="Search…"
+                            placeholder="بحث ...."
                             aria-label="Search..."
                             spellcheck="false"
                             data-ms-editor="true"
@@ -123,7 +123,8 @@
                             >
                                 <i class="ti ti-eye"></i>
                             </a>
-                            @endcan @can('delete', $intoutbox)
+                            @endcan 
+                            {{-- @can('delete', $intoutbox)
                             <form
                                 action="{{ route('intoutboxes.destroy', $intoutbox) }}"
                                 method="POST"
@@ -138,7 +139,7 @@
                                     <i class="ti ti-trash-x"></i>
                                 </button>
                             </form>
-                            @endcan
+                            @endcan --}}
                         </div>
                     </td>
                 </tr>

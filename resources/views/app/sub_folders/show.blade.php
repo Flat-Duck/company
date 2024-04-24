@@ -56,5 +56,177 @@
         </div>
     </div>
 </div>
+<br />
+
+<div class="row">
+    <div class="col-3">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-left">الصادر الداخلي</h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-vcenter text-nowrap">
+                        <thead>
+                            <tr>
+                                <th class="text-left">#</th>
+                                <th class="text-left"> @lang('crud.sub_folders.inputs.name') </th>
+                                <th class="text-left">@lang('crud.common.actions')</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($intouts as  $k=> $intout)
+                            <tr>
+                                <td>{{ $k+1 }}</td>
+                                <td>{{ $intouts->number ?? '-' }}</td>
+                                <td class="text-left">
+                                    @can('view', $intout)
+                                        <a href="{{ route('sub-folders.show', $intout) }}" class="btn btn-icon btn-outline-info ms-1" >
+                                            <i class="ti ti-eye"></i>
+                                        </a>
+                                    @endcan
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="3">@lang('crud.common.no_items_found')</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer d-flex align-items-left">
+                    {!! $intouts->render() !!}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-left">الصادر الخارجي</h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-vcenter text-nowrap">
+                        <thead>
+                            <tr>
+                                <th class="text-left">#</th>
+                                <th class="text-left"> @lang('crud.sub_folders.inputs.name') </th>
+                                <th class="text-left">@lang('crud.common.actions')</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($extouts as  $k=> $extout)
+                            <tr>
+                                <td>{{ $k+1 }}</td>
+                                <td>{{ $extout->number ?? '-' }}</td>
+                                <td class="text-left">
+                                    @can('view', $extout)
+                                        <a href="{{ route('sub-folders.show', $extout) }}" class="btn btn-icon btn-outline-info ms-1" >
+                                            <i class="ti ti-eye"></i>
+                                        </a>
+                                    @endcan
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="3">@lang('crud.common.no_items_found')</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer d-flex align-items-left">
+                    {!! $extouts->render() !!}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-left">الوارد</h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-vcenter text-nowrap">
+                        <thead>
+                            <tr>
+                                <th class="text-left">#</th>
+                                <th class="text-left"> @lang('crud.sub_folders.inputs.name') </th>
+                                <th class="text-left">@lang('crud.common.actions')</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($inboxes as  $k=> $inbox)
+                            <tr>
+                                <td>{{ $k+1 }}</td>
+                                <td>{{ $inbox->name ?? '-' }}</td>
+                                <td class="text-left">
+                                    @can('view', $inbox)
+                                        <a href="{{ route('sub-folders.show', $inbox) }}" class="btn btn-icon btn-outline-info ms-1" >
+                                            <i class="ti ti-eye"></i>
+                                        </a>
+                                    @endcan
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="3">@lang('crud.common.no_items_found')</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer d-flex align-items-left">
+                    {!! $inboxes->render() !!}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-left">معاملات أخرى</h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-vcenter text-nowrap">
+                        <thead>
+                            <tr>
+                                <th class="text-left">#</th>
+                                <th class="text-left"> @lang('crud.sub_folders.inputs.name') </th>
+                                <th class="text-left">@lang('crud.common.actions')</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($memos as  $k=> $memo)
+                            <tr>
+                                <td>{{ $k+1 }}</td>
+                                <td>{{ $memo->name ?? '-' }}</td>
+                                <td class="text-left">
+                                    @can('view', $memo)
+                                        <a href="{{ route('sub-folders.show', $memo) }}" class="btn btn-icon btn-outline-info ms-1" >
+                                            <i class="ti ti-eye"></i>
+                                        </a>
+                                    @endcan
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="3">@lang('crud.common.no_items_found')</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer d-flex align-items-left">
+                    {!! $memos->render() !!}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection

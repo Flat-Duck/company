@@ -15,7 +15,7 @@
                             type="text"
                             value=""
                             class="form-control"
-                            placeholder="Search…"
+                            placeholder="بحث ...."
                             aria-label="Search..."
                             spellcheck="false"
                             data-ms-editor="true"
@@ -89,7 +89,8 @@
                             >
                                 <i class="ti ti-eye"></i>
                             </a>
-                            @endcan @can('delete', $department)
+                            @endcan 
+                            {{-- @can('delete', $department)
                             <form
                                 action="{{ route('departments.destroy', $department) }}"
                                 method="POST"
@@ -104,7 +105,7 @@
                                     <i class="ti ti-trash-x"></i>
                                 </button>
                             </form>
-                            @endcan
+                            @endcan --}}
                         </div>
                     </td>
                 </tr>

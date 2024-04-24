@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->string('receiver');
             $table->text('subject');
             $table
-                ->enum('company_status', ['قائمة', 'قيد التشطيب', 'تم شطبها'])
+                ->enum('company_status', ['قائمة', 'قيد التشطيب', 'تم شطبها','لايوجد'])
                 ->default('قائمة')
                 ->nullable();
             $table->unsignedBigInteger('main_folder_id');

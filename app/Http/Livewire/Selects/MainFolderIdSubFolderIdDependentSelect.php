@@ -38,19 +38,19 @@ class MainFolderIdSubFolderIdDependentSelect extends Component
         
         if ($obj instanceof Extoutbox) {
             
-            $obj = Extoutbox::findOrFail($obj);
+            $obj = Extoutbox::findOrFail($obj->id);
 
         } elseif ($obj instanceof Intoutbox) {
             
-            $obj = Intoutbox::findOrFail($obj);
+            $obj = Intoutbox::findOrFail($obj->id);
 
         } elseif ($obj instanceof Inbox) {
             
-            $obj = Inbox::findOrFail($obj);
+            $obj = Inbox::findOrFail($obj->id);
         
         } elseif ($obj instanceof Memo) {
             
-            $obj = Memo::findOrFail($obj);
+            $obj = Memo::findOrFail($obj->id);
         
         }
 

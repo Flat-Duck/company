@@ -30,4 +30,12 @@ class User extends Authenticatable
     {
         return $this->hasRole('super-admin');
     }
+
+
+    public function toggleActivation()
+    {
+        $this->active = !$this->active;
+        $this->save();
+
+    }
 }

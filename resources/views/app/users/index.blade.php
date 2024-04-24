@@ -15,7 +15,7 @@
                             type="text"
                             value=""
                             class="form-control"
-                            placeholder="Search…"
+                            placeholder="بحث ...."
                             aria-label="Search..."
                             spellcheck="false"
                             data-ms-editor="true"
@@ -55,6 +55,7 @@
                 <tr>
                     <th class="text-left">@lang('crud.users.inputs.name')</th>
                     <th class="text-left">@lang('crud.users.inputs.email')</th>
+                    <th class="text-left">الحالة</th>
                     <th class="text-center">@lang('crud.common.actions')</th>
                 </tr>
             </thead>
@@ -63,6 +64,13 @@
                 <tr>
                     <td>{{ $user->name ?? '-' }}</td>
                     <td>{{ $user->email ?? '-' }}</td>
+                    <td>
+                        @if ($user->active)
+                        <span class="badge bg-lime text-lime-fg">مفعل</span>
+                        @else
+                        <span class="badge bg-red text-red-fg">غير مفعل</span>                        
+                        @endif
+                    </td>
                     <td class="text-center" style="width: 134px;">
                         <div
                             role="group"
@@ -87,15 +95,21 @@
                             <form
                                 action="{{ route('users.destroy', $user) }}"
                                 method="POST"
-                                class="inline pointer ms-1"
+                                class="inline pointer ms-1"                                
                                 onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')"
                             >
                                 @csrf @method('DELETE')
                                 <button
                                     type="submit"
-                                    class="btn btn-icon btn-outline-danger"
+                                    class="btn btn-icon btn-outline-{{ $user->active? 'danger':'success' }}"
+                                    Show password data-bs-toggle="tooltip"
+                                    title="{{ $user->active? 'إلغاء تفعيل':'تفعيل' }}"
                                 >
-                                    <i class="ti ti-trash-x"></i>
+                                @if ($user->active)
+                                <i class="ti ti-lock"></i>                                
+                                @else
+                                <i class="ti ti-lock-open"></i>
+                                @endif
                                 </button>
                             </form>
                             @endcan

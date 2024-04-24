@@ -117,10 +117,10 @@ class UserController extends Controller
     {
         $this->authorize('delete', $user);
 
-        $user->delete();
+        $user->toggleActivation();
 
         return redirect()
             ->route('users.index')
-            ->withSuccess(__('crud.common.removed'));
+            ->withSuccess(__('تم تعديل حالة المستخدم'));
     }
 }

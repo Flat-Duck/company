@@ -4,10 +4,10 @@
     <x-inputs.group class="col-sm-12">
         <x-inputs.text
             name="name"
-            label="Name"
+            label="الاسم"
             :value="old('name', ($editing ? $user->name : ''))"
             maxlength="255"
-            placeholder="Name"
+            placeholder="الاسم"
             required
         ></x-inputs.text>
     </x-inputs.group>
@@ -15,26 +15,37 @@
     <x-inputs.group class="col-sm-12">
         <x-inputs.email
             name="email"
-            label="Email"
+            label="البريد الالكتروني"
             :value="old('email', ($editing ? $user->email : ''))"
             maxlength="255"
-            placeholder="Email"
+            placeholder="البريد الالكتروني"
             required
         ></x-inputs.email>
-    </x-inputs.group>
-
+    </x-inputs.group>    
     <x-inputs.group class="col-sm-12">
-        <x-inputs.password
+        <label class="form-label {{ $editing ? '': 'required' }}">
+            كلمة المرور
+        </label>
+        <div class="input-group input-group-flat @error('password') is-invalid @enderror">
+            <input type="password" maxlength="255" placeholder="كلمة المرور" id="password"  class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" 
+            {{ $editing ? '' : 'required' }} autocomplete="password" autofocus>
+            <span class="input-group-text">
+                <a href="#" class="link-secondary" title="عرض كلمة المرور" data-bs-toggle="tooltip" onclick="showPassword()">
+                    <i class="ti ti-eye"></i>
+                </a>
+            </span>
+        </div>
+        {{-- <x-inputs.password
             name="password"
             label="Password"
             maxlength="255"
             placeholder="Password"
             :required="!$editing"
-        ></x-inputs.password>
+        ></x-inputs.password> --}}
     </x-inputs.group>
 
     <div class="form-group col-sm-12 mt-4">
-        <h4>Assign @lang('crud.roles.name')</h4>
+        <h4>تعيين @lang('crud.roles.name')</h4>
 
         @foreach ($roles as $role)
         <div>

@@ -1,16 +1,19 @@
 @php $editing = isset($extoutbox) @endphp
 
 <div class="row">
-    <x-inputs.group class="col-sm-12">
-        <x-inputs.text
-            name="number"
-            label="{{trans('crud.extoutboxes.inputs.number')}}"
-            :value="old('number', ($editing ? $extoutbox->number : ''))"
-            maxlength="255"
+    <div class="mb-3 col-sm-12">
+        <label class="form-label">{{trans('crud.extoutboxes.inputs.number')}}</label>
+        <div class="input-group input-group-flat">
+            <input name="number" type="text" 
             placeholder="{{trans('crud.extoutboxes.inputs.number')}}"
-            required
-        ></x-inputs.text>
-    </x-inputs.group>
+            value="{{old('number', ($editing ? $extoutbox->number : ''))}}"
+            class="form-control text-end pe-0" 
+            autocomplete="off" required >
+            <span class="input-group-text">
+                 / IEXP / 2024  
+            </span>
+        </div>
+    </div>
 
     <x-inputs.group class="col-sm-12">
         <x-inputs.date
@@ -68,6 +71,7 @@
     <x-inputs.group class="col-sm-12">
         <x-inputs.select name="company_status" label="{{trans('crud.extoutboxes.inputs.company_status')}}">
             @php $selected = old('company_status', ($editing ? $extoutbox->company_status : 'قائمة')) @endphp
+            <option value="لايوجد" {{ $selected == 'لايوجد' ? 'selected' : '' }} >لايوجد</option>
             <option value="قائمة" {{ $selected == 'قائمة' ? 'selected' : '' }} >قائمة</option>
             <option value="قيد التشطيب" {{ $selected == 'قيد التشطيب' ? 'selected' : '' }} >قيد التشطيب</option>
             <option value="تم شطبها" {{ $selected == 'تم شطبها' ? 'selected' : '' }} >تم شطبها</option>
@@ -94,5 +98,5 @@
         </x-inputs.select>
     </x-inputs.group> --}}
 
-    @livewire('selects.main-folder-id-sub-folder-id-dependent-select', [ 'obj' => $editing ? $extoutbox->id : null])
+    @livewire('selects.main-folder-id-sub-folder-id-dependent-select', [ 'obj' => $editing ? $extoutbox : null])
 </div>
