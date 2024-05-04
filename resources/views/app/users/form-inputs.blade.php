@@ -14,7 +14,7 @@
 
     <x-inputs.group class="col-sm-12">
         <x-inputs.select name="gender" label="الجنس">
-            @php $selected = old('gender', ($editing ? $patient->gender : '')) @endphp
+            @php $selected = old('gender', ($editing ? $user->gender : '')) @endphp
             <option value="ذكر" {{ $selected == 'ذكر' ? 'selected' : '' }} >ذكر</option>
             <option value="أنثى" {{ $selected == 'أنثى' ? 'selected' : '' }} >أنثى</option>
         </x-inputs.select>
@@ -24,7 +24,7 @@
         <x-inputs.text
             name="phone"
             label="رقم الهاتف"
-            :value="old('phone', ($editing ? $patient->phone : ''))"
+            :value="old('phone', ($editing ? $user->phone : ''))"
             placeholder="رقم الهاتف"
             required
         ></x-inputs.text>
