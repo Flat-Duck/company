@@ -13,6 +13,24 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
+        <x-inputs.select name="gender" label="الجنس">
+            @php $selected = old('gender', ($editing ? $patient->gender : '')) @endphp
+            <option value="ذكر" {{ $selected == 'ذكر' ? 'selected' : '' }} >ذكر</option>
+            <option value="أنثى" {{ $selected == 'أنثى' ? 'selected' : '' }} >أنثى</option>
+        </x-inputs.select>
+    </x-inputs.group>
+
+    <x-inputs.group class="col-sm-12">
+        <x-inputs.text
+            name="phone"
+            label="رقم الهاتف"
+            :value="old('phone', ($editing ? $patient->phone : ''))"
+            placeholder="رقم الهاتف"
+            required
+        ></x-inputs.text>
+    </x-inputs.group>
+
+    <x-inputs.group class="col-sm-12">
         <x-inputs.email
             name="email"
             label="البريد الالكتروني"
