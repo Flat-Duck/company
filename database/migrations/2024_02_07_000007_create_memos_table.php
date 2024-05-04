@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('memos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('number');
-            $table->timestamp('registered_at');
+            $table->date('registered_at');
             $table->timestamp('issued_at');
             $table->string('type');
             $table->text('subject');

@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\InboxStoreRequest;
 use App\Http\Requests\InboxUpdateRequest;
+use App\Models\Activity;
+use App\Models\Intoutbox;
+use Illuminate\Support\Facades\Auth;
 
 class InboxController extends Controller
 {
@@ -56,6 +59,15 @@ class InboxController extends Controller
         $validated = $request->validated();
 
         $inbox = Inbox::create($validated);
+
+        $activity = new Activity();
+        $activity->user_id = Auth::id();        
+        $activity->type = Activity::ADD;
+        $activity->name = Inbox::NAME;
+        $activity->link = Inbox::link($inbox->id);
+        $activity->description = " قام " .Auth::user()->name. " ب".Activity::ADD." " .Inbox::NAME. " بتاريخ " .$inbox->created_at->format('Y-d-m');
+        $activity->save();
+
 
         return redirect()
             ->route('inboxes.edit', $inbox)

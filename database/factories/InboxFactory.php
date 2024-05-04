@@ -29,7 +29,6 @@ class InboxFactory extends Factory
             'sender' => $this->faker->text(255),
             'receiver' => $this->faker->text(255),
             'subject' => $this->faker->text(),
-            'main_folder_id' => \App\Models\MainFolder::factory(),
             'sub_folder_id' => \App\Models\SubFolder::factory(),
         ];
     }

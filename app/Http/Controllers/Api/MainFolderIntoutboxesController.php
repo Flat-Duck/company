@@ -40,7 +40,7 @@ class MainFolderIntoutboxesController extends Controller
             'sender' => ['required', 'max:255', 'string'],
             'receiver' => ['required', 'max:255', 'string'],
             'subject' => ['required', 'max:255', 'string'],
-            'company_status' => ['nullable', 'in:قائمة,قيد التشطيب,تم شطبها,لايوجد'],
+            'company_status' => ['nullable', 'in:قائمة,قيد التشطيب,تم شطبها,لا يوجد'],
             'sub_folder_id' => ['nullable', 'exists:sub_folders,id'],
             'sub_folder_id' => ['nullable', 'exists:sub_folders,id'],
         ]);

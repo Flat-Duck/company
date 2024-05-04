@@ -13,14 +13,14 @@ return new class extends Migration {
         Schema::create('inboxes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('number');
-            $table->timestamp('registered_at');
+            $table->date('registered_at');
             $table->timestamp('issued_at');
             $table->string('sender');
             $table->string('receiver');
             $table->text('subject');
-            $table->enum('type', ['شخصي', 'طلب'])->default('شخصي');
+            $table->enum('type', ['طلب شخصي', 'أخرى', 'لا يوجد'])->default('لا يوجد');
             $table
-                ->enum('company_status', ['قائمة', 'قيد التشطيب', 'تم شطبها','لايوجد'])
+                ->enum('company_status', ['قائمة', 'قيد التشطيب', 'تم شطبها','لا يوجد'])
                 ->default('قائمة')
                 ->nullable();
             $table->unsignedBigInteger('main_folder_id');

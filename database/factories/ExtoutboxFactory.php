@@ -28,8 +28,7 @@ class ExtoutboxFactory extends Factory
             'issued_at' => $this->faker->dateTime(),
             'sender' => $this->faker->text(255),
             'receiver' => $this->faker->text(255),
-            'subject' => $this->faker->text(),
-            'main_folder_id' => \App\Models\MainFolder::factory(),
+            'subject' => $this->faker->text(),            
             'sub_folder_id' => \App\Models\SubFolder::factory(),
         ];
     }

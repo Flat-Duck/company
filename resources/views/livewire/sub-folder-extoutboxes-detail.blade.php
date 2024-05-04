@@ -97,7 +97,7 @@
                             label="Company Status"
                             wire:model="extoutbox.company_status"
                         >
-                        <option value="لايوجد" {{ $selected == 'لايوجد' ? 'selected' : '' }} >لايوجد</option>
+                        <option value="لا يوجد" {{ $selected == 'لا يوجد' ? 'selected' : '' }} >لا يوجد</option>
                         <option value="قائمة" {{ $selected == 'قائمة' ? 'selected' : '' }} >قائمة</option>
                         <option value="قيد التشطيب" {{ $selected == ' قيد التشطيب' ? 'selected' : '' }} >قيد التشطيب</option>
                         <option value="تم شطبها" {{ $selected == ' تم شطبها' ? 'selected' : '' }} >تم شطبها</option>

@@ -10,7 +10,9 @@
             class="form-control text-end pe-0" 
             autocomplete="off" required >
             <span class="input-group-text">
-                 / IEXP / 2024  
+                @if(!$editing)
+                {{ App\Models\Memo::GetFullCode() }}
+             @endif
             </span>
         </div>
     </div>

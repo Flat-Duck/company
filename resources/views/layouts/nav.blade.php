@@ -24,7 +24,7 @@
             <a href="?theme=light" class="nav-link px-0 hide-theme-light" title="Enable light mode" data-bs-toggle="tooltip" data-bs-placement="bottom">
                 <i class="ti ti-sun"></i>
             </a>
-            <div class="nav-item dropdown d-none d-md-flex me-3">
+            {{-- <div class="nav-item dropdown d-none d-md-flex me-3">
                 <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1" aria-label="Show notifications">
                     <i class="ti ti-bell"></i>
                     <span class="badge bg-red"></span>
@@ -55,10 +55,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
-                    <span class="avatar avatar-sm" style="background-image: url(./static/avatars/000m.jpg)"></span>
+                    {{-- <span class="avatar avatar-sm" style="background-image: url(./static/avatars/000m.jpg)"></span> --}}
                     <div class="d-none d-xl-block ps-2">
                         <div>{{ auth()->user()->name ?? null }}</div>
                         <div class="mt-1 small text-secondary">{{ auth()->user()->email ?? null }}</div>
@@ -72,14 +72,14 @@
                         @endif
                     @endguest
                     @auth
-                        <a class="dropdown-item" href="{{ route('profile.show') }}" rel="noopener">
+                        {{-- <a class="dropdown-item" href="{{ route('profile.show') }}" rel="noopener">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <i class="ti ti-user-circle"></i>
                             </span>
                             <span class="nav-link-title">
                                 {{ __('Profile') }}
                             </span>
-                        </a>
+                        </a> --}}
                         <a class="dropdown-item" href="{{ route('logout') }}" rel="noopener" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <i class="ti ti-logout-2"></i>

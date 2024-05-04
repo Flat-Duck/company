@@ -10,7 +10,9 @@
             class="form-control text-end pe-0" 
             autocomplete="off" required >
             <span class="input-group-text">
-                 / IEXP / 2024  
+                @if(!$editing)
+                {{ App\Models\Intoutbox::GetFullCode() }}
+             @endif
             </span>
         </div>
     </div>
@@ -71,7 +73,7 @@
     <x-inputs.group class="col-sm-12">
         <x-inputs.select name="company_status" label="{{trans('crud.intoutboxes.inputs.company_status')}}">
             @php $selected = old('company_status', ($editing ? $intoutbox->company_status : 'قائمة')) @endphp
-            <option value="لايوجد" {{ $selected == 'لايوجد' ? 'selected' : '' }} >لايوجد</option>
+            <option value="لا يوجد" {{ $selected == 'لا يوجد' ? 'selected' : '' }} >لا يوجد</option>
             <option value="قائمة" {{ $selected == 'قائمة' ? 'selected' : '' }} >قائمة</option>
             <option value="قيد التشطيب" {{ $selected == ' قيد التشطيب' ? 'selected' : '' }} >قيد التشطيب</option>
             <option value="تم شطبها" {{ $selected == ' تم شطبها' ? 'selected' : '' }} >تم شطبها</option>

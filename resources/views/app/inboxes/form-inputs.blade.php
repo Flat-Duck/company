@@ -10,7 +10,9 @@
             class="form-control text-end pe-0" 
             autocomplete="off" required >
             <span class="input-group-text">
-                 / IEXP / 2024  
+                @if(!$editing)
+                {{ App\Models\Inbox::GetFullCode() }}
+             @endif
             </span>
         </div>
     </div>
@@ -70,16 +72,17 @@
 
     <x-inputs.group class="col-sm-12">
         <x-inputs.select name="type" label="{{trans('crud.inboxes.inputs.type')}}">
-            @php $selected = old('type', ($editing ? $inbox->type : 'شخصي')) @endphp
-            <option value="شخصي" {{ $selected == 'شخصي' ? 'selected' : '' }} ></option>
-            <option value="طلب" {{ $selected == 'طلب' ? 'selected' : '' }} ></option>
+            @php $selected = old('type', ($editing ? $inbox->type : 'لا يوجد')) @endphp
+            <option value="طلب شخصي" {{ $selected == 'طلب شخصي' ? 'selected' : '' }} >طلب شخصي</option>
+            <option value="أخرى" {{ $selected == 'أخرى' ? 'selected' : '' }} >أخرى</option>
+            <option value="لا يوجد" {{ $selected == 'لا يوجد' ? 'selected' : '' }} >لا يوجد</option>
         </x-inputs.select>
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
         <x-inputs.select name="company_status" label="{{trans('crud.inboxes.inputs.company_status')}}">
             @php $selected = old('company_status', ($editing ? $inbox->company_status : 'قائمة')) @endphp
-            <option value="لايوجد" {{ $selected == 'لايوجد' ? 'selected' : '' }} >لايوجد</option>
+            <option value="لا يوجد" {{ $selected == 'لا يوجد' ? 'selected' : '' }} >لا يوجد</option>
             <option value="قائمة" {{ $selected == 'قائمة' ? 'selected' : '' }} >قائمة</option>
             <option value="قيد التشطيب" {{ $selected == 'قيد التشطيب' ? 'selected' : '' }} >قيد التشطيب</option>
             <option value="تم شطبها" {{ $selected == 'تم شطبها' ? 'selected' : '' }} >تم شطبها</option>

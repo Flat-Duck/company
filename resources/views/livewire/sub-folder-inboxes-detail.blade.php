@@ -95,10 +95,10 @@
                         <x-inputs.select
                             name="inbox.type"
                             label="Type"
-                            wire:model="inbox.type"
-                        >
-                            <option value="شخصي" {{ $selected == 'شخصي' ? 'selected' : '' }} ></option>
-                            <option value="طلب" {{ $selected == 'طلب' ? 'selected' : '' }} ></option>
+                            wire:model="inbox.type" >
+                            <option value="طلب شخصي" {{ $selected == 'طلب شخصي' ? 'selected' : '' }} >طلب شخصي</option>
+                            <option value="أخرى" {{ $selected == 'أخرى' ? 'selected' : '' }} >أخرى</option>
+                            <option value="لا يوجد" {{ $selected == 'لا يوجد' ? 'selected' : '' }} >لا يوجد</option>
                         </x-inputs.select>
                     </x-inputs.group>
 
@@ -108,7 +108,7 @@
                             label="Company Status"
                             wire:model="inbox.company_status"
                         >
-                        <option value="لايوجد" {{ $selected == 'لايوجد' ? 'selected' : '' }} >لايوجد</option>
+                        <option value="لا يوجد" {{ $selected == 'لا يوجد' ? 'selected' : '' }} >لا يوجد</option>
                         <option value="قائمة" {{ $selected == 'قائمة' ? 'selected' : '' }} >قائمة</option>
                         <option value="قيد التشطيب" {{ $selected == ' قيد التشطيب' ? 'selected' : '' }} >قيد التشطيب</option>
                         <option value="تم شطبها" {{ $selected == ' تم شطبها' ? 'selected' : '' }} >تم شطبها</option>

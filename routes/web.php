@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\MainFolderController;
 use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\AdministrationController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +43,7 @@ Route::prefix('/')
         Route::resource('roles', RoleController::class);
         Route::resource('permissions', PermissionController::class);
 
+        Route::resource('activities', ActivityController::class);
         Route::resource('users', UserController::class);
         Route::resource('administrations', AdministrationController::class);
         Route::resource('departments', DepartmentController::class);
@@ -52,6 +55,15 @@ Route::prefix('/')
         Route::resource('intoutboxes', IntoutboxController::class);
         Route::resource('memos', MemoController::class);
         Route::resource('attachments', AttachmentController::class);
+
+
+
+        Route::get('reports', [ReportController::class, 'index'])->name('reports.index');
+        Route::get('reports/inventory', [ReportController::class, 'inventory'])->name('reports.inventory');
+        Route::get('reports/invoices', [ReportController::class, 'invoices'])->name('reports.invoices');
+        Route::get('reports/issues', [ReportController::class, 'issues'])->name('reports.issues');
+        Route::get('reports/orders', [ReportController::class, 'orders'])->name('reports.orders');
+
         Route::get('profile', [
             \App\Http\Controllers\ProfileController::class,
             'show',

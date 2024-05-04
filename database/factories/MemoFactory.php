@@ -28,7 +28,6 @@ class MemoFactory extends Factory
             'issued_at' => $this->faker->dateTime(),
             'type' => $this->faker->word(),
             'subject' => $this->faker->text(),
-            'main_folder_id' => \App\Models\MainFolder::factory(),
             'sub_folder_id' => \App\Models\SubFolder::factory(),
         ];
     }

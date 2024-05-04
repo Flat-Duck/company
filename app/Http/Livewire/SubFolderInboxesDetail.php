@@ -53,7 +53,7 @@ class SubFolderInboxesDetail extends Component
 
         $this->inboxRegisteredAt = null;
         $this->inboxIssuedAt = null;
-        $this->inbox->type = 'شخصي';
+        $this->inbox->type = 'لا يوجد';
         $this->inbox->company_status = 'قائمة';
         $this->inbox->main_folder_id = null;
 

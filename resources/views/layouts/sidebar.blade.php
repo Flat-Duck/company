@@ -48,20 +48,7 @@
                                         @endcan
                                     </div>
                                 </li>
-                            @endif
-                            {{-- @can('view-any', )
-                                <li class="nav-item {{ $page == 'users'? 'active':''  }}">
-                                    <a class="nav-link" href="{{ route('users.index') }}" >
-                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                            <!-- Download SVG icon from http://tabler-icons.io/i/Users -->
-                                            <i class="ti ti-users"></i>
-                                        </span>
-                                        <span class="nav-link-title">
-                                            المستخدمين
-                                        </span>
-                                    </a>
-                                </li>
-                            @endcan --}}
+                            @endif                            
                             @can('view-any', App\Models\Administration::class)
                                 <li class="nav-item {{ $page == 'administrations'? 'active':''  }}">
                                     <a class="nav-link" href="{{ route('administrations.index') }}" >
@@ -211,9 +198,36 @@
                                     </a>
                                 </li>
                             @endcan --}}
-                            @if (Auth::user()->can('view-any', App\Models\MainFolder::class) || 
+                            @can('view-any', App\Models\MainFolder::class)
+                                <li class="nav-item {{ $page == 'main-folders'? 'active':''  }}">
+                                    <a class="nav-link" href="{{ route('main-folders.index') }}" >
+                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                            <!-- Download SVG icon from http://tabler-icons.io/i/Users -->
+                                            <i class="ti ti-folders"></i>
+                                        </span>
+                                        <span class="nav-link-title">
+                                            المجلدات
+                                        </span>
+                                    </a>
+                                </li>
+                            @endcan
+
+                            
+                            <li class="nav-item {{ $page == 'reports'? 'active':''  }}">
+                                <a class="nav-link" href="{{ route('reports.index') }}" >
+                                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/Users -->
+                                        <i class="ti ti-report-analytics"></i>
+                                    </span>
+                                    <span class="nav-link-title">
+                                        التقارير
+                                    </span>
+                                </a>
+                            </li>
+                        
+                            {{-- @if (Auth::user()->can('view-any', App\Models\MainFolder::class) || 
                             Auth::user()->can('view-any', App\Models\SubFolder::class))
-                            <li class="nav-item dropdown @if ($page == 'main-folders' || $page == 'sub-folders') active @endif ">
+                            <li class="nav-item dropdown @if ($page == 'reports' || $page == 'sub-folders') active @endif ">
                                 <a class="nav-link dropdown-toggle" href="#navbar-access" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false">
                                     <span class="nav-link-icon d-md-none d-lg-inline-block">
                                         <i class="ti ti-folders"></i>
@@ -221,8 +235,8 @@
                                     <span class="nav-link-title">
                                         المجلدات
                                     </span>
-                                </a>
-                                <div class="dropdown-menu">
+                                </a> --}}
+                                {{-- <div class="dropdown-menu">
                                     @can('view-any', App\Models\MainFolder::class)
                                         <div class="dropend">
                                             <a class="dropdown-item dropdown-toggle" href="#sidebar-authentication" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="true">
@@ -245,7 +259,7 @@
                                                 @endforeach                                                
                                             </div>
                                         </div>
-                                    @endcan
+                                    @endcan --}}
                                     {{-- @can('view-any', App\Models\MainFolder::class)
                                         <a class="dropdown-item" href="{{ route('main-folders.index') }}" rel="noopener">
                                             <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -256,7 +270,7 @@
                                             </span>
                                         </a>
                                     @endcan --}}
-                                    @can('view-any', App\Models\SubFolder::class)
+                                    {{-- @can('view-any', App\Models\SubFolder::class)
                                         <a class="dropdown-item" href="{{ route('sub-folders.index') }}">
                                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                                 <i class="ti ti-folder-down"></i>
@@ -265,10 +279,10 @@
                                                 المجلدات الفرعية
                                             </span>
                                         </a>
-                                    @endcan
-                                </div>
+                                    @endcan --}}
+                                {{-- </div>
                             </li>
-                        @endif
+                        @endif --}}
                             {{-- @can('view-any', App\Models\Attachment::class)
                                 <li class="nav-item {{ $page == 'attachments'? 'active':''  }}">
                                     <a class="nav-link" href="{{ route('attachments.index') }}" >
