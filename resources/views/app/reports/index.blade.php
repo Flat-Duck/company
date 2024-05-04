@@ -2,7 +2,7 @@
 
 @section('title',  trans('crud.orders.create_title') )
 @section('content')
-<div class="container-xl">
+{{-- <div class="container-xl">
     <div class="page-header d-print-none">
         <h2 class="page-title">إنشاء تقرير</h2>
     </div>
@@ -79,11 +79,11 @@
                                 <form role="form" method="GET" action="{{ route('reports.issues') }}" > 
                                     @csrf
                                     <div class="row">
-                                        {{-- <x-inputs.group class="col-sm-6">
+                                        <x-inputs.group class="col-sm-6">
                                             <label class="form-label">
                                                 
                                             </label>
-                                        </x-inputs.group> --}}
+                                        </x-inputs.group>
 
                                         <x-inputs.group class="col-sm-6 mt-5">
                                             <button type="submit" class="btn btn-primary">
@@ -101,5 +101,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 @endsection
