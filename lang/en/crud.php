@@ -365,6 +365,58 @@ return [
         ],
     ],
 
+    'extoutbox_attachments' => [
+        'name' => 'Extoutbox Attachments',
+        'index_title' => 'قائمة المرفقات',
+        'new_title' => 'مرفق جديد',
+        'create_title' => 'رفع مرفق',
+        'edit_title' => 'تعديل المرفق',
+        'show_title' => 'عرض المرفق',
+        'inputs' => [
+            'name' => 'الاسم',
+            'file' => 'الملف',
+        ],
+    ],
+
+    'inbox_attachments' => [
+        'name' => 'Inbox Attachments',
+        'index_title' => 'قائمة المرفقات',
+        'new_title' => 'مرفق جديد',
+        'create_title' => 'رفع مرفق',
+        'edit_title' => 'تعديل المرفق',
+        'show_title' => 'عرض المرفق',
+        'inputs' => [
+            'name' => 'الاسم',
+            'file' => 'الملف',
+        ],
+    ],
+
+    'intoutbox_attachments' => [
+        'name' => 'Intoutbox Attachments',
+        'index_title' => 'قائمة المرفقات',
+        'new_title' => 'مرفق جديد',
+        'create_title' => 'رفع مرفق',
+        'edit_title' => 'تعديل المرفق',
+        'show_title' => 'عرض المرفق',
+        'inputs' => [
+            'name' => 'الاسم',
+            'file' => 'الملف',
+        ],
+    ],
+
+    'memo_attachments' => [
+        'name' => 'Memo Attachments',
+        'index_title' => 'قائمة المرفقات',
+        'new_title' => 'مرفق جديد',
+        'create_title' => 'رفع مرفق',
+        'edit_title' => 'تعديل المرفق',
+        'show_title' => 'عرض المرفق',
+        'inputs' => [
+            'name' => 'الاسم',
+            'file' => 'الملف',
+        ],
+    ],
+
     'roles' => [
         'name' => 'الادوار',
         'index_title' => 'الادوار قائمة',
