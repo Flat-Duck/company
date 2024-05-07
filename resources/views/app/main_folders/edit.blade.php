@@ -42,17 +42,17 @@
         </div>
     </div>
 </form>
-
 @can('view-any', App\Models\SubFolder::class)
 <div class="card mt-4">
     <div class="card-header">
-        <h3 class="card-title">Sub Folders</h3>
+        <h3 class="card-title">المجلدات الفرعية</h3>
     </div>
     <div class="card-body">
         <livewire:main-folder-sub-folders-detail :mainFolder="$mainFolder" />
     </div>
 </div>
-@endcan @can('view-any', App\Models\Inbox::class)
+@endcan
+{{-- @can('view-any', App\Models\Inbox::class)
 <div class="card mt-4">
     <div class="card-header">
         <h3 class="card-title">Inboxes</h3>
@@ -88,4 +88,5 @@
         <livewire:main-folder-extoutboxes-detail :mainFolder="$mainFolder" />
     </div>
 </div>
-@endcan @endsection
+@endcan --}}
+ @endsection

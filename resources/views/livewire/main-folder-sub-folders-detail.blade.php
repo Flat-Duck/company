@@ -37,10 +37,10 @@
                     <x-inputs.group class="col-sm-12">
                         <x-inputs.text
                             name="subFolder.name"
-                            label="Name"
+                            label="الإسم"
                             wire:model="subFolder.name"
                             maxlength="255"
-                            placeholder="Name"
+                            placeholder="الإسم"
                         ></x-inputs.text>
                     </x-inputs.group>
                 </div>
