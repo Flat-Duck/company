@@ -8,9 +8,9 @@
                 {{ $editing? $memo->number : App\Models\Memo::GetFullCode() }}
             </span>
             <input name="display" type="text" readonly value="" class="form-control text-end pe-0" autocomplete="off">
-            <input type="hidden" value="{{ $editing? $memo->number : App\Models\Memo::GetFullCode() }}" name="number">
         </div>
     </div>
+    <input type="hidden" value="{{ $editing? $memo->number : App\Models\Memo::GetFullCode() }}" name="number">
 
     <x-inputs.group class="col-sm-12">
         <x-inputs.date

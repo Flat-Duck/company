@@ -5,7 +5,8 @@
             <i class="ti ti-plus"></i>
             @lang('crud.common.new')
         </button>
-        @endcan @can('delete-any', App\Models\SubFolder::class)
+        @endcan 
+        {{--@can('delete-any', App\Models\SubFolder::class)
         <button
             class="btn btn-danger"
              {{ empty($selected) ? 'disabled' : '' }} 
@@ -15,7 +16,7 @@
             <i class="ti ti-trash"></i>
             @lang('crud.common.delete_selected')
         </button>
-        @endcan
+        @endcan --}}
     </div>
 
     <x-modal id="main-folder-sub-folders-modal" wire:model="showingModal">
@@ -70,14 +71,14 @@
         <table class="table table-borderless table-hover">
             <thead>
                 <tr>
-                    <th>
+                    {{-- <th>
                         <input
                             type="checkbox"
                             wire:model="allSelected"
                             wire:click="toggleFullSelection"
                             title="{{ trans('crud.common.select_all') }}"
                         />
-                    </th>
+                    </th> --}}
                     <th class="text-left">
                         @lang('crud.main_folder_sub_folders.inputs.name')
                     </th>
@@ -87,13 +88,13 @@
             <tbody class="text-gray-600">
                 @foreach ($subFolders as $subFolder)
                 <tr class="hover:bg-gray-100">
-                    <td class="text-left">
+                    {{-- <td class="text-left">
                         <input
                             type="checkbox"
                             value="{{ $subFolder->id }}"
                             wire:model="selected"
                         />
-                    </td>
+                    </td> --}}
                     <td class="text-left">{{ $subFolder->name ?? '-' }}</td>
                     <td class="text-right" style="width: 134px;">
                         <div

@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string('sender');
             $table->string('receiver');
             $table->text('subject');
-            $table->enum('type', ['طلب شخصي', 'أخرى', 'لا يوجد'])->default('لا يوجد');
+            $table->enum('type', ['طلب', 'شخصي', 'أخرى', 'لا يوجد'])->default('لا يوجد');
             $table
                 ->enum('company_status', ['قائمة', 'قيد التشطيب', 'تم شطبها','لا يوجد'])
                 ->default('قائمة')

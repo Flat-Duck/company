@@ -35,7 +35,7 @@ class MainFolderInboxesDetail extends Component
         'inbox.sender' => ['required', 'max:255', 'string'],
         'inbox.receiver' => ['required', 'max:255', 'string'],
         'inbox.subject' => ['required', 'max:255', 'string'],
-        'inbox.type' => ['required', 'in:شخصي,طلب'],
+        'inbox.type' => ['required', 'in:طلب,شخصي,أخرى,لا يوجد'],
         'inbox.company_status' => ['nullable', 'in:قائمة,قيد التشطيب,تم شطبها'],
         'inbox.sub_folder_id' => ['nullable', 'exists:sub_folders,id'],
     ];

@@ -8,9 +8,9 @@
                 {{ $editing? $extoutbox->number : App\Models\Extoutbox::GetFullCode() }}
             </span>
             <input name="display" type="text" readonly value="" class="form-control text-end pe-0" autocomplete="off">
-            <input type="hidden" value="{{ $editing? $extoutbox->number : App\Models\Extoutbox::GetFullCode() }}" name="number">
         </div>
     </div>
+    <input type="hidden" value="{{ $editing? $extoutbox->number : App\Models\Extoutbox::GetFullCode() }}" name="number">
     
 
     <x-inputs.group class="col-sm-12">

@@ -96,7 +96,8 @@
                             name="inbox.type"
                             label="Type"
                             wire:model="inbox.type" >
-                            <option value="طلب شخصي" {{ $selected == 'طلب شخصي' ? 'selected' : '' }} >طلب شخصي</option>
+                            <option value="طلب" {{ $selected == 'طلب' ? 'selected' : '' }} >طلب</option>
+                            <option value="شخصي" {{ $selected == 'شخصي' ? 'selected' : '' }} >شخصي</option>
                             <option value="أخرى" {{ $selected == 'أخرى' ? 'selected' : '' }} >أخرى</option>
                             <option value="لا يوجد" {{ $selected == 'لا يوجد' ? 'selected' : '' }} >لا يوجد</option>
                         </x-inputs.select>
