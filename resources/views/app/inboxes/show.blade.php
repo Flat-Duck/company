@@ -31,7 +31,7 @@
                             <input
                                 type="text"
                                 class="form-control"
-                                value="{{ $inbox->registered_at ?? '-' }}"
+                                value="{{ $inbox->registered_at->format('Y-d-m')?? '-' }}"
                                 disabled=""
                             />
                         </div>
@@ -42,7 +42,7 @@
                             <input
                                 type="text"
                                 class="form-control"
-                                value="{{ $inbox->issued_at ?? '-' }}"
+                                value="{{ $inbox->issued_at->format('Y-d-m') ?? '-' }}"
                                 disabled=""
                             />
                         </div>
@@ -101,39 +101,7 @@
                                 disabled=""
                             />
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label"
-                                >@lang('crud.inboxes.inputs.main_folder_id')</label
-                            >
-                            <input
-                                type="text"
-                                class="form-control"
-                                value="{{ optional($inbox->mainFolder)->name ?? '-' }}"
-                                disabled=""
-                            />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label"
-                                >@lang('crud.inboxes.inputs.sub_folder_id')</label
-                            >
-                            <input
-                                type="text"
-                                class="form-control"
-                                value="{{ optional($inbox->subFolder)->name ?? '-' }}"
-                                disabled=""
-                            />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label"
-                                >@lang('crud.inboxes.inputs.main_folder_id')</label
-                            >
-                            <input
-                                type="text"
-                                class="form-control"
-                                value="{{ optional($inbox->mainFolder)->name ?? '-' }}"
-                                disabled=""
-                            />
-                        </div>
+                        
                         <div class="mb-3">
                             <label class="form-label"
                                 >@lang('crud.inboxes.inputs.sub_folder_id')</label

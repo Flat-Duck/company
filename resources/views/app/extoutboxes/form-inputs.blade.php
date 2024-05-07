@@ -4,18 +4,14 @@
     <div class="mb-3 col-sm-12">
         <label class="form-label">{{trans('crud.extoutboxes.inputs.number')}}</label>
         <div class="input-group input-group-flat">
-            <input name="number" type="text" 
-            placeholder="{{trans('crud.extoutboxes.inputs.number')}}"
-            value="{{old('number', ($editing ? $extoutbox->number : ''))}}"
-            class="form-control text-end pe-0" 
-            autocomplete="off" required >
             <span class="input-group-text">
-                @if(!$editing)
-                    {{ App\Models\Extoutbox::GetFullCode() }}
-                 @endif
+                {{ $editing? $extoutbox->number : App\Models\Extoutbox::GetFullCode() }}
             </span>
+            <input name="display" type="text" readonly value="" class="form-control text-end pe-0" autocomplete="off">
+            <input type="hidden" value="{{ $editing? $extoutbox->number : App\Models\Extoutbox::GetFullCode() }}" name="number">
         </div>
     </div>
+    
 
     <x-inputs.group class="col-sm-12">
         <x-inputs.date
@@ -36,27 +32,25 @@
             required
         ></x-inputs.date>
     </x-inputs.group>
-
+    
     <x-inputs.group class="col-sm-12">
-        <x-inputs.text
-            name="sender"
-            label="{{trans('crud.extoutboxes.inputs.sender')}}"
-            :value="old('sender', ($editing ? $extoutbox->sender : ''))"
-            maxlength="255"
-            placeholder="{{trans('crud.extoutboxes.inputs.sender')}}"
-            required
-        ></x-inputs.text>
+        <x-inputs.select name="sender" label="{{trans('crud.extoutboxes.inputs.sender')}}" required>
+            @php $selected = old('sender', ($editing ? $extoutbox->sender : '')) @endphp
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>الرجاء اختيار المرسل</option>
+            @foreach($fromTo as $value => $label)
+            <option value="{{ $label }}" {{ $selected == $label ? 'selected' : '' }} >{{ $label }}</option>
+            @endforeach
+        </x-inputs.select>
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
-        <x-inputs.text
-            name="receiver"
-            label="{{trans('crud.extoutboxes.inputs.receiver')}}"
-            :value="old('receiver', ($editing ? $extoutbox->receiver : ''))"
-            maxlength="255"
-            placeholder="{{trans('crud.extoutboxes.inputs.receiver')}}"
-            required
-        ></x-inputs.text>
+        <x-inputs.select name="receiver" label="{{trans('crud.extoutboxes.inputs.receiver')}}" required>
+            @php $selected = old('receiver', ($editing ? $extoutbox->receiver : '')) @endphp
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>الرجاء اختيار المتلقي</option>
+            @foreach($fromTo as $value => $label)
+            <option value="{{ $label }}" {{ $selected == $label ? 'selected' : '' }} >{{ $label }}</option>
+            @endforeach
+        </x-inputs.select>
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
@@ -81,9 +75,9 @@
     </x-inputs.group>
 
     {{-- <x-inputs.group class="col-sm-12">
-        <x-inputs.select name="main_folder_id" label="Main Folder" required>
+        <x-inputs.select name="main_folder_id" label="المجلد الرئيسي" required>
             @php $selected = old('main_folder_id', ($editing ? $extoutbox->main_folder_id : '')) @endphp
-            <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Main Folder</option>
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>الرجاء اختيار المجلد الرئيسي</option>
             @foreach($mainFolders as $value => $label)
             <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
             @endforeach
@@ -91,9 +85,9 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
-        <x-inputs.select name="sub_folder_id" label="Sub Folder" required>
+        <x-inputs.select name="sub_folder_id" label="المجلد الفرعي" required>
             @php $selected = old('sub_folder_id', ($editing ? $extoutbox->sub_folder_id : '')) @endphp
-            <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Sub Folder</option>
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>الرجاء اختيار المجلد الفرعي</option>
             @foreach($subFolders as $value => $label)
             <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
             @endforeach

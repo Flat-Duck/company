@@ -20,16 +20,16 @@ class DatabaseSeeder extends Seeder
             ]);
         $this->call(PermissionsSeeder::class);
 
-        $this->call(AdministrationSeeder::class);
-        $this->call(AttachmentSeeder::class);
-        $this->call(DepartmentSeeder::class);
-        $this->call(ExtoutboxSeeder::class);
-        $this->call(InboxSeeder::class);
-        $this->call(IntoutboxSeeder::class);
-        $this->call(MainFolderSeeder::class);
-        $this->call(MemoSeeder::class);
-        $this->call(OfficeSeeder::class);
-        $this->call(SubFolderSeeder::class);
-        $this->call(UserSeeder::class);
+        // $this->call(AdministrationSeeder::class);
+        // $this->call(AttachmentSeeder::class);
+        // $this->call(DepartmentSeeder::class);
+        // $this->call(ExtoutboxSeeder::class);
+        // $this->call(InboxSeeder::class);
+        // $this->call(IntoutboxSeeder::class);
+        // $this->call(MainFolderSeeder::class);
+        // $this->call(MemoSeeder::class);
+        // $this->call(OfficeSeeder::class);
+        // $this->call(SubFolderSeeder::class);
+        // $this->call(UserSeeder::class);
     }
 }

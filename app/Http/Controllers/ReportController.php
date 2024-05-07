@@ -2,6 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
+use App\Models\Extoutbox;
+use App\Models\Inbox;
+use App\Models\Intoutbox;
+use App\Models\MainFolder;
+use App\Models\Memo;
+use App\Models\OutboxReport;
+use App\Models\SubFolder;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Invoice;
@@ -9,6 +17,7 @@ use App\Models\Issue;
 use App\Models\Item;
 use App\Models\Office;
 use App\Models\Order;
+use App\Models\User;
 
 class ReportController extends Controller
 {
@@ -17,19 +26,63 @@ class ReportController extends Controller
      */
     public function index(Request $request): View
     {
-        $offices = Office::pluck('name', 'id');
-        return view('app.reports.index', compact('offices'));
+        $mains = MainFolder::all();
+        $subs = SubFolder::all();
+        return view('app.reports.index', compact('mains', 'subs'));
     }
     /**
      * Display a listing of the resource.
      */
-    public function inventory(Request $request): View
+    public function messages(Request $request): View
     {
-        $type = $request->type;
-        
-        $items = Item::latest()->paginate(150)->withQueryString();
+        $report = $request->type;
+        $type = "تقرير رسائل ";
+        $items = [];
+        if($report == "inbox"){
+            $type = "تقرير رسائل الوارد";
+            $items = Inbox::all();
+        }
+        if($report == "extoutboxes"){
+            $type = "تقرير رسائل الصادر الخارجي";
+            $items =  Extoutbox::all();
+        }
+        if($report == "intoutboxes"){
+            $type = "تقرير رسائل الصادر الداخلي";
+            $items = Intoutbox::all();
+        }
+        if($report == "memos"){
+            $type = "تقرير رسائل المعاملات الأخرى";
+            $items = Memo::all();
+        }
+        if($report == "outboxes"){
+            $type = "تقرير رسائل الصادر داخلي وخارجي";
 
-        return view('app.reports.inventory', compact('items', 'type'));
+            $exts = Extoutbox::all();
+            $extsWithFlag = $exts->map(function ($ext) {
+                unset($ext->id);
+                $ext->type = $ext::NAME;
+                return $ext;
+            });
+
+            $ints = Intoutbox::all();
+            $intsWithFlag = $ints->map(function ($int) {
+                unset($int->id);
+                $int->type = $int::NAME;
+                return $int;
+            });
+                    
+            $mergedCollection = collect($intsWithFlag->toArray())->merge($extsWithFlag->toArray());
+            $items = $mergedCollection->map(function ($attributes) {
+                return new OutboxReport($attributes);
+            });
+             
+             
+            $items = $items->sortBy('created_at');
+
+
+        }
+        
+        return view('app.reports.messages', compact('items', 'type'));
     }
 
     /**
@@ -47,13 +100,58 @@ class ReportController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function  issues(Request $request): View
+    public function  users(Request $request): View
     {
-        $type = "أذونات الصرف";
+        $type = "تقرير المستخدمين";
         
-        $issues = Issue::latest()->paginate(150)->withQueryString();
+        $items = User::all();
 
-        return view('app.reports.issues', compact('issues', 'type'));
+        return view('app.reports.users', compact('items', 'type'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function main_folders(Request $request): View
+    {
+        $type = "تقرير المجلدات الرئيسية";
+        
+        $items = MainFolder::all();
+
+        return view('app.reports.folders', compact('items', 'type'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function activity(Request $request): View
+    {
+        $type = "تقرير نشاطات المستخدمين";
+        
+        $items = Activity::all();
+
+        return view('app.reports.activity', compact('items', 'type'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function sub_folders(Request $request): View
+    {
+        $type = "تقرير المجلدات الفرعية";
+
+        $main = $request->mainid;
+        if($main == 0){
+            $items = SubFolder::all();
+            return view('app.reports.folders', compact('items', 'type'));
+        }
+        
+        $mainf = MainFolder::find($main);
+        $type = $type. " لمجلد "  .$mainf->name;
+        $items = $mainf->subFolders;
+        return view('app.reports.folders', compact('items', 'type'));
+
+        
     }
 
         /**

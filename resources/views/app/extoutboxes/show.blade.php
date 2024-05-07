@@ -31,7 +31,7 @@
                             <input
                                 type="text"
                                 class="form-control"
-                                value="{{ $extoutbox->registered_at ?? '-' }}"
+                                value="{{ $extoutbox->registered_at->format('Y-d-m')?? '-' }}"
                                 disabled=""
                             />
                         </div>
@@ -42,7 +42,7 @@
                             <input
                                 type="text"
                                 class="form-control"
-                                value="{{ $extoutbox->issued_at ?? '-' }}"
+                                value="{{ $extoutbox->issued_at->format('Y-d-m') ?? '-' }}"
                                 disabled=""
                             />
                         </div>
@@ -89,40 +89,7 @@
                                 value="{{ $extoutbox->company_status ?? '-' }}"
                                 disabled=""
                             />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label"
-                                >@lang('crud.extoutboxes.inputs.main_folder_id')</label
-                            >
-                            <input
-                                type="text"
-                                class="form-control"
-                                value="{{ optional($extoutbox->mainFolder)->name ?? '-' }}"
-                                disabled=""
-                            />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label"
-                                >@lang('crud.extoutboxes.inputs.sub_folder_id')</label
-                            >
-                            <input
-                                type="text"
-                                class="form-control"
-                                value="{{ optional($extoutbox->subFolder)->name ?? '-' }}"
-                                disabled=""
-                            />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label"
-                                >@lang('crud.extoutboxes.inputs.main_folder_id')</label
-                            >
-                            <input
-                                type="text"
-                                class="form-control"
-                                value="{{ optional($extoutbox->mainFolder)->name ?? '-' }}"
-                                disabled=""
-                            />
-                        </div>
+                        </div>                        
                         <div class="mb-3">
                             <label class="form-label"
                                 >@lang('crud.extoutboxes.inputs.sub_folder_id')</label

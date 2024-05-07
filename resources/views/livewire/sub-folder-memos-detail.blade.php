@@ -2,7 +2,7 @@
     <div class="mb-4">
         @can('create', App\Models\Memo::class)
         <button class="btn btn-primary" wire:click="newMemo">
-            <i class="icon ion-md-add"></i>
+            <i class="ti ti-plus"></i>
             @lang('crud.common.new')
         </button>
         @endcan @can('delete-any', App\Models\Memo::class)
@@ -12,7 +12,7 @@
             onclick="confirm('Are you sure?') || event.stopImmediatePropagation()"
             wire:click="destroySelected"
         >
-            <i class="icon ion-md-trash"></i>
+            <i class="ti ti-trash"></i>
             @lang('crud.common.delete_selected')
         </button>
         @endcan
@@ -84,10 +84,10 @@
                     <x-inputs.group class="col-sm-12">
                         <x-inputs.select
                             name="memo.main_folder_id"
-                            label="Main Folder"
+                            label="المجلد الرئيسي"
                             wire:model="memo.main_folder_id"
                         >
-                            <option value="null" disabled>Please select the Main Folder</option>
+                            <option value="null" disabled>الرجاء اختيار المجلد الرئيسي</option>
                             @foreach($mainFoldersForSelect as $value => $label)
                             <option value="{{ $value }}"  >{{ $label }}</option>
                             @endforeach
@@ -104,12 +104,12 @@
                     class="btn btn-light float-left"
                     wire:click="$toggle('showingModal')"
                 >
-                    <i class="icon ion-md-close"></i>
+                    <i class="ti ti-close"></i>
                     @lang('crud.common.cancel')
                 </button>
 
                 <button type="button" class="btn btn-primary" wire:click="save">
-                    <i class="icon ion-md-save"></i>
+                    <i class="ti ti-save"></i>
                     @lang('crud.common.save')
                 </button>
             </div>
@@ -160,8 +160,8 @@
                         />
                     </td>
                     <td class="text-left">{{ $memo->number ?? '-' }}</td>
-                    <td class="text-left">{{ $memo->registered_at ?? '-' }}</td>
-                    <td class="text-left">{{ $memo->issued_at ?? '-' }}</td>
+                    <td class="text-left">{{ $memo->registered_at->format('Y-d-m')?? '-' }}</td>
+                    <td class="text-left">{{ $memo->issued_at->format('Y-d-m') ?? '-' }}</td>
                     <td class="text-left">{{ $memo->type ?? '-' }}</td>
                     <td class="text-left">{{ $memo->subject ?? '-' }}</td>
                     <td class="text-left">
@@ -179,7 +179,7 @@
                                 class="btn btn-light"
                                 wire:click="editMemo({{ $memo->id }})"
                             >
-                                <i class="icon ion-md-create"></i>
+                                <i class="ti ti-file-plus"></i>
                             </button>
                             @endcan
                         </div>

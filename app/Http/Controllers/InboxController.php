@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Administration;
+use App\Models\Department;
 use App\Models\Inbox;
+use App\Models\Office;
 use Illuminate\View\View;
 use App\Models\SubFolder;
 use App\Models\MainFolder;
@@ -42,11 +45,15 @@ class InboxController extends Controller
 
         $mainFolders = MainFolder::pluck('name', 'id');
         $subFolders = SubFolder::pluck('name', 'id');
+        
+        $offices = Office::pluck('name');
+        $administrations = Administration::pluck('name');
+        $departments = Department::pluck('name');
 
-        return view(
-            'app.inboxes.create',
-            compact('mainFolders', 'subFolders', 'mainFolders', 'subFolders')
-        );
+        $fromTo = $offices->merge($departments)->merge($administrations)->values();
+                
+        return view('app.inboxes.create',
+            compact('mainFolders', 'subFolders', 'mainFolders', 'subFolders', 'fromTo'));
     }
 
     /**
@@ -59,16 +66,7 @@ class InboxController extends Controller
         $validated = $request->validated();
 
         $inbox = Inbox::create($validated);
-
-        $activity = new Activity();
-        $activity->user_id = Auth::id();        
-        $activity->type = Activity::ADD;
-        $activity->name = Inbox::NAME;
-        $activity->link = Inbox::link($inbox->id);
-        $activity->description = " قام " .Auth::user()->name. " ب".Activity::ADD." " .Inbox::NAME. " بتاريخ " .$inbox->created_at->format('Y-d-m');
-        $activity->save();
-
-
+        
         return redirect()
             ->route('inboxes.edit', $inbox)
             ->withSuccess(__('crud.common.created'));
@@ -94,6 +92,12 @@ class InboxController extends Controller
         $mainFolders = MainFolder::pluck('name', 'id');
         $subFolders = SubFolder::pluck('name', 'id');
 
+        $offices = Office::pluck('name');
+        $administrations = Administration::pluck('name');
+        $departments = Department::pluck('name');
+
+        $fromTo = $offices->merge($departments)->merge($administrations)->values();
+
         return view(
             'app.inboxes.edit',
             compact(
@@ -101,7 +105,8 @@ class InboxController extends Controller
                 'mainFolders',
                 'subFolders',
                 'mainFolders',
-                'subFolders'
+                'subFolders', 
+                'fromTo'
             )
         );
     }

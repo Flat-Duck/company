@@ -63,12 +63,19 @@ class SubFolderController extends Controller
     public function show(Request $request, SubFolder $subFolder): View
     {
         $this->authorize('view', $subFolder);
-        $intouts = $subFolder->intoutboxes()->paginate(5);
-        $extouts = $subFolder->extoutboxes()->paginate(5);
-        $inboxes = $subFolder->inboxes()->paginate(5);
-        $memos = $subFolder->memos()->paginate(5);
+        
+        $int_search = $request->get('int_search', '');
+        $ext_search = $request->get('ext_search', '');
+        $inb_search = $request->get('inb_search', '');
+        $mem_search = $request->get('mem_search', '');
+        
+        $intouts = $subFolder->intoutboxes()->search($int_search)->paginate(50)->withQueryString();
+        $extouts = $subFolder->extoutboxes()->search($ext_search)->paginate(50)->withQueryString();
+        $inboxes = $subFolder->inboxes()->search($inb_search)->paginate(50)->withQueryString();
+        $memos = $subFolder->memos()->search($mem_search)->paginate(50)->withQueryString();
 
-        return view('app.sub_folders.show', compact('subFolder', 'intouts', 'extouts','inboxes', 'memos'));
+        return view('app.sub_folders.show', compact('subFolder', 'intouts', 'extouts','inboxes', 'memos',
+                                                    'int_search', 'ext_search', 'inb_search', 'mem_search',));
     }
 
     /**

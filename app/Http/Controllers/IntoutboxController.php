@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Administration;
+use App\Models\Department;
 use App\Models\Intoutbox;
+use App\Models\Office;
 use Illuminate\View\View;
 use App\Models\SubFolder;
 use App\Models\MainFolder;
@@ -39,10 +42,15 @@ class IntoutboxController extends Controller
 
         $mainFolders = MainFolder::pluck('name', 'id');
         $subFolders = SubFolder::pluck('name', 'id');
+        $offices = Office::pluck('name');
+        $administrations = Administration::pluck('name');
+        $departments = Department::pluck('name');
+
+        $fromTo = $offices->merge($departments)->merge($administrations)->values();
 
         return view(
             'app.intoutboxes.create',
-            compact('mainFolders', 'subFolders', 'mainFolders', 'subFolders')
+            compact('mainFolders', 'subFolders', 'mainFolders', 'subFolders', 'fromTo')
         );
     }
 
@@ -81,6 +89,11 @@ class IntoutboxController extends Controller
 
         $mainFolders = MainFolder::pluck('name', 'id');
         $subFolders = SubFolder::pluck('name', 'id');
+        $offices = Office::pluck('name');
+        $administrations = Administration::pluck('name');
+        $departments = Department::pluck('name');
+
+        $fromTo = $offices->merge($departments)->merge($administrations)->values();
 
         return view(
             'app.intoutboxes.edit',
@@ -89,7 +102,8 @@ class IntoutboxController extends Controller
                 'mainFolders',
                 'subFolders',
                 'mainFolders',
-                'subFolders'
+                'subFolders',
+                'fromTo'
             )
         );
     }

@@ -4,7 +4,7 @@
             name="main_folder_id"
             label="{{trans('crud.extoutboxes.inputs.main_folder_id')}}"
             wire:model="selectedMainFolderId">
-            <option selected>Please select the Main Folder</option>
+            <option selected>الرجاء اختيار المجلد الرئيسي</option>
             @foreach($allMainFolders as $id => $name)
             <option value="{{ $id }}">{{ $name }}</option>
             @endforeach
@@ -16,7 +16,7 @@
             name="sub_folder_id"
             label="{{trans('crud.extoutboxes.inputs.sub_folder_id')}}"
             wire:model="selectedSubFolderId">
-            <option selected>Please select the Sub Folder</option>
+            <option selected>الرجاء اختيار المجلد الفرعي</option>
             @foreach($allSubFolders as $id => $name)
             <option value="{{ $id }}">{{ $name }}</option>
             @endforeach

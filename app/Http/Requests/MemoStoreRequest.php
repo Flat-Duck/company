@@ -25,9 +25,6 @@ class MemoStoreRequest extends FormRequest
             'issued_at' => ['required', 'date'],
             'type' => ['required', 'max:255', 'string'],
             'subject' => ['required', 'max:255', 'string'],
-            'main_folder_id' => ['required', 'exists:main_folders,id'],
-            'sub_folder_id' => ['nullable', 'exists:sub_folders,id'],
-            'main_folder_id' => ['required', 'exists:main_folders,id'],
             'sub_folder_id' => ['nullable', 'exists:sub_folders,id'],
         ];
     }

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Scopes\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Auth;
 
 class Intoutbox extends Model
 {
@@ -13,11 +14,18 @@ class Intoutbox extends Model
 
     const CODE = 'IEXP';
     const NAME = 'صادر داخلي';
+
+    public static function link($id)
+    {
+        return route('intoutboxes.show', $id);
+    }
+    
     protected $fillable = [
         'number',
         'registered_at',
         'issued_at',
         'sender',
+        'typer',
         'receiver',
         'subject',
         'company_status',
@@ -47,14 +55,17 @@ class Intoutbox extends Model
         return $this->hasMany(Attachment::class);
     }
 
-    public static function GetFullCode() : string 
+    public static function GetFullCode() : string
     {
-        return self::CODE. "/" .now()->year. "/" .self::getNewCode();
+        return self::CODE. " / " .now()->year. " / " .self::getNewCode();
     }
 
     public static function getNewCode() : int 
     {
-        return self::whereYear('created_at', now()->year)->latest()->limit(1)->get()->first()->id + 1;
+        $first =  self::whereYear('created_at', now()->year)->latest()->limit(1)->get()->first();
+        if($first) {return $first->id + 1;}
+        
+        return 1;
     }
          /**
      * The "booted" method of the model.
@@ -66,8 +77,16 @@ class Intoutbox extends Model
         parent::boot();
         static::created(function ($model) {
             
-            $model->number = self::GetFullCode();
-            $model->save();    
+            // $model->number = self::GetFullCode();
+            // $model->save();
+
+            $activity = new Activity();
+            $activity->user_id = Auth::id();
+            $activity->type = Activity::ADD;
+            $activity->name = self::NAME;
+            $activity->link = self::link($model->id);
+            $activity->description = " قام " .Auth::user()->name. " ب".Activity::ADD." " .self::NAME. " بتاريخ " .$model->created_at->format('Y-d-m');
+            $activity->save();
         });
     }
 

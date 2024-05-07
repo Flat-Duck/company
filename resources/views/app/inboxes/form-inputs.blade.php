@@ -4,16 +4,11 @@
     <div class="mb-3 col-sm-12">
         <label class="form-label">{{trans('crud.inboxes.inputs.number')}}</label>
         <div class="input-group input-group-flat">
-            <input name="number" type="text" 
-            placeholder="{{trans('crud.inboxes.inputs.number')}}"
-            value="{{old('number', ($editing ? $inbox->number : ''))}}"
-            class="form-control text-end pe-0" 
-            autocomplete="off" required >
             <span class="input-group-text">
-                @if(!$editing)
-                {{ App\Models\Inbox::GetFullCode() }}
-             @endif
+                {{ $editing? $inbox->number : App\Models\Inbox::GetFullCode() }}
             </span>
+            <input name="display" type="text" readonly value="" class="form-control text-end pe-0" autocomplete="off">
+            <input type="hidden" value="{{ $editing? $inbox->number : App\Models\Inbox::GetFullCode() }}" name="number">
         </div>
     </div>
 
@@ -37,7 +32,7 @@
         ></x-inputs.date>
     </x-inputs.group>
 
-    <x-inputs.group class="col-sm-12">
+    {{-- <x-inputs.group class="col-sm-12">
         <x-inputs.text
             name="sender"
             label="{{trans('crud.inboxes.inputs.sender')}}"
@@ -57,6 +52,26 @@
             placeholder="{{trans('crud.inboxes.inputs.receiver')}}"
             required
         ></x-inputs.text>
+    </x-inputs.group> --}}
+
+    <x-inputs.group class="col-sm-12">
+        <x-inputs.select name="sender" label="{{trans('crud.inboxes.inputs.sender')}}" required>
+            @php $selected = old('sender', ($editing ? $inbox->sender : '')) @endphp
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>الرجاء اختيار المرسل</option>
+            @foreach($fromTo as $value => $label)
+            <option value="{{ $label }}" {{ $selected == $label ? 'selected' : '' }} >{{ $label }}</option>
+            @endforeach
+        </x-inputs.select>
+    </x-inputs.group>
+
+    <x-inputs.group class="col-sm-12">
+        <x-inputs.select name="receiver" label="{{trans('crud.inboxes.inputs.receiver')}}" required>
+            @php $selected = old('receiver', ($editing ? $inbox->receiver : '')) @endphp
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>الرجاء اختيار المتلقي</option>
+            @foreach($fromTo as $value => $label)
+            <option value="{{ $label }}" {{ $selected == $label ? 'selected' : '' }} >{{ $label }}</option>
+            @endforeach
+        </x-inputs.select>
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
@@ -90,9 +105,9 @@
     </x-inputs.group>
 
     {{-- <x-inputs.group class="col-sm-12">
-        <x-inputs.select name="main_folder_id" label="Main Folder" required>
+        <x-inputs.select name="main_folder_id" label="المجلد الرئيسي" required>
             @php $selected = old('main_folder_id', ($editing ? $inbox->main_folder_id : '')) @endphp
-            <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Main Folder</option>
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>الرجاء اختيار المجلد الرئيسي</option>
             @foreach($mainFolders as $value => $label)
             <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
             @endforeach
@@ -100,9 +115,9 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
-        <x-inputs.select name="sub_folder_id" label="Sub Folder">
+        <x-inputs.select name="sub_folder_id" label="المجلد الفرعي">
             @php $selected = old('sub_folder_id', ($editing ? $inbox->sub_folder_id : '')) @endphp
-            <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Sub Folder</option>
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>الرجاء اختيار المجلد الفرعي</option>
             @foreach($subFolders as $value => $label)
             <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
             @endforeach

@@ -59,10 +59,11 @@ Route::prefix('/')
 
 
         Route::get('reports', [ReportController::class, 'index'])->name('reports.index');
-        Route::get('reports/inventory', [ReportController::class, 'inventory'])->name('reports.inventory');
-        Route::get('reports/invoices', [ReportController::class, 'invoices'])->name('reports.invoices');
-        Route::get('reports/issues', [ReportController::class, 'issues'])->name('reports.issues');
-        Route::get('reports/orders', [ReportController::class, 'orders'])->name('reports.orders');
+        Route::get('reports/messages', [ReportController::class, 'messages'])->name('reports.messages');
+        Route::get('reports/main_folders', [ReportController::class, 'main_folders'])->name('reports.main_folders');
+        Route::get('reports/sub_folders', [ReportController::class, 'sub_folders'])->name('reports.sub_folders');
+        Route::get('reports/users', [ReportController::class, 'users'])->name('reports.users');
+        Route::get('reports/activity', [ReportController::class, 'activity'])->name('reports.activity');
 
         Route::get('profile', [
             \App\Http\Controllers\ProfileController::class,

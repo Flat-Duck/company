@@ -2,7 +2,7 @@
     <div class="mb-4">
         @can('create', App\Models\Intoutbox::class)
         <button class="btn btn-primary" wire:click="newIntoutbox">
-            <i class="icon ion-md-add"></i>
+            <i class="ti ti-plus"></i>
             @lang('crud.common.new')
         </button>
         @endcan @can('delete-any', App\Models\Intoutbox::class)
@@ -12,7 +12,7 @@
             onclick="confirm('Are you sure?') || event.stopImmediatePropagation()"
             wire:click="destroySelected"
         >
-            <i class="icon ion-md-trash"></i>
+            <i class="ti ti-trash"></i>
             @lang('crud.common.delete_selected')
         </button>
         @endcan
@@ -107,10 +107,10 @@
                     <x-inputs.group class="col-sm-12">
                         <x-inputs.select
                             name="intoutbox.sub_folder_id"
-                            label="Sub Folder"
+                            label="المجلد الفرعي"
                             wire:model="intoutbox.sub_folder_id"
                         >
-                            <option value="null" disabled>Please select the Sub Folder</option>
+                            <option value="null" disabled>الرجاء اختيار المجلد الفرعي</option>
                             @foreach($subFoldersForSelect as $value => $label)
                             <option value="{{ $value }}"  >{{ $label }}</option>
                             @endforeach
@@ -127,12 +127,12 @@
                     class="btn btn-light float-left"
                     wire:click="$toggle('showingModal')"
                 >
-                    <i class="icon ion-md-close"></i>
+                    <i class="ti ti-close"></i>
                     @lang('crud.common.cancel')
                 </button>
 
                 <button type="button" class="btn btn-primary" wire:click="save">
-                    <i class="icon ion-md-save"></i>
+                    <i class="ti ti-save"></i>
                     @lang('crud.common.save')
                 </button>
             </div>
@@ -190,10 +190,10 @@
                     </td>
                     <td class="text-left">{{ $intoutbox->number ?? '-' }}</td>
                     <td class="text-left">
-                        {{ $intoutbox->registered_at ?? '-' }}
+                        {{ $intoutbox->registered_at->format('Y-d-m')?? '-' }}
                     </td>
                     <td class="text-left">
-                        {{ $intoutbox->issued_at ?? '-' }}
+                        {{ $intoutbox->issued_at->format('Y-d-m') ?? '-' }}
                     </td>
                     <td class="text-left">{{ $intoutbox->sender ?? '-' }}</td>
                     <td class="text-left">{{ $intoutbox->receiver ?? '-' }}</td>
@@ -216,7 +216,7 @@
                                 class="btn btn-light"
                                 wire:click="editIntoutbox({{ $intoutbox->id }})"
                             >
-                                <i class="icon ion-md-create"></i>
+                                <i class="ti ti-file-plus"></i>
                             </button>
                             @endcan
                         </div>

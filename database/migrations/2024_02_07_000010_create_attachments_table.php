@@ -14,10 +14,10 @@ return new class extends Migration {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('file')->nullable();
-            $table->unsignedBigInteger('extoutbox_id');
-            $table->unsignedBigInteger('intoutbox_id');
-            $table->unsignedBigInteger('inbox_id');
-            $table->unsignedBigInteger('memo_id');
+            $table->unsignedBigInteger('extoutbox_id')->nullable();
+            $table->unsignedBigInteger('intoutbox_id')->nullable();
+            $table->unsignedBigInteger('inbox_id')->nullable();
+            $table->unsignedBigInteger('memo_id')->nullable();
 
             $table->timestamps();
         });

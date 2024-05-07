@@ -4,10 +4,10 @@
     <x-inputs.group class="col-sm-12">
         <x-inputs.text
             name="name"
-            label="Name"
+            label="الإسم"
             :value="old('name', ($editing ? $office->name : ''))"
             maxlength="255"
-            placeholder="Name"
+            placeholder="الإسم"
             required
         ></x-inputs.text>
     </x-inputs.group>

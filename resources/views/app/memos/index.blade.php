@@ -53,43 +53,37 @@
         <table class="table card-table table-vcenter text-nowrap datatable">
             <thead>
                 <tr>
-                    <th class="text-left">@lang('crud.memos.inputs.number')</th>
+                    <th class="text-left">
+                        @lang('crud.memos.inputs.number')
+                    </th>
                     <th class="text-left">
                         @lang('crud.memos.inputs.registered_at')
                     </th>
                     <th class="text-left">
                         @lang('crud.memos.inputs.issued_at')
                     </th>
-                    <th class="text-left">@lang('crud.memos.inputs.type')</th>
+                    <th class="text-left">
+                        @lang('crud.memos.inputs.type')
+                    </th>
                     <th class="text-left">
                         @lang('crud.memos.inputs.subject')
                     </th>
                     <th class="text-left">
-                        @lang('crud.memos.inputs.main_folder_id')
-                    </th>
-                    <th class="text-left">
                         @lang('crud.memos.inputs.sub_folder_id')
                     </th>
-                    <th class="text-left">
-                        @lang('crud.memos.inputs.main_folder_id')
+                    <th class="text-center">
+                        @lang('crud.common.actions')
                     </th>
-                    <th class="text-left">
-                        @lang('crud.memos.inputs.sub_folder_id')
-                    </th>
-                    <th class="text-center">@lang('crud.common.actions')</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse($memos as $memo)
                 <tr>
                     <td>{{ $memo->number ?? '-' }}</td>
-                    <td>{{ $memo->registered_at ?? '-' }}</td>
-                    <td>{{ $memo->issued_at ?? '-' }}</td>
+                    <td>{{ $memo->registered_at->format('Y-d-m')?? '-' }}</td>
+                    <td>{{ $memo->issued_at->format('Y-d-m') ?? '-' }}</td>
                     <td>{{ $memo->type ?? '-' }}</td>
                     <td>{{ $memo->subject ?? '-' }}</td>
-                    <td>{{ optional($memo->mainFolder)->name ?? '-' }}</td>
-                    <td>{{ optional($memo->subFolder)->name ?? '-' }}</td>
-                    <td>{{ optional($memo->mainFolder)->name ?? '-' }}</td>
                     <td>{{ optional($memo->subFolder)->name ?? '-' }}</td>
                     <td class="text-center" style="width: 134px;">
                         <div

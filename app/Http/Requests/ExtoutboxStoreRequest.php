@@ -27,9 +27,6 @@ class ExtoutboxStoreRequest extends FormRequest
             'receiver' => ['required', 'max:255', 'string'],
             'subject' => ['required', 'max:255', 'string'],
             'company_status' => ['nullable', 'in:قائمة,قيد التشطيب,تم شطبها,لا يوجد'],
-            'main_folder_id' => ['required', 'exists:main_folders,id'],
-            'sub_folder_id' => ['required', 'exists:sub_folders,id'],
-            'main_folder_id' => ['required', 'exists:main_folders,id'],
             'sub_folder_id' => ['required', 'exists:sub_folders,id'],
         ];
     }

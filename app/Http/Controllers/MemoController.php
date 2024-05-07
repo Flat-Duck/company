@@ -55,6 +55,14 @@ class MemoController extends Controller
 
         $validated = $request->validated();
 
+        // dd($validated);
+        // 'number',
+        // 'registered_at',
+        // 'issued_at',
+        // 'type',
+        // 'subject',
+        // 'main_folder_id',
+        // 'sub_folder_id',
         $memo = Memo::create($validated);
 
         return redirect()

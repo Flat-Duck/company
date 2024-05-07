@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Administration;
+use App\Models\Department;
 use App\Models\Extoutbox;
+use App\Models\Office;
 use Illuminate\View\View;
 use App\Models\SubFolder;
 use App\Models\MainFolder;
@@ -40,10 +43,16 @@ class ExtoutboxController extends Controller
         $mainFolders = MainFolder::pluck('name', 'id');
         $subFolders = SubFolder::pluck('name', 'id');
 
+        $offices = Office::pluck('name');
+        $administrations = Administration::pluck('name');
+        $departments = Department::pluck('name');
+
+        $fromTo = $offices->merge($departments)->merge($administrations)->values();
         return view(
             'app.extoutboxes.create',
-            compact('mainFolders', 'subFolders', 'mainFolders', 'subFolders')
-        );
+            compact('mainFolders', 'subFolders', 'mainFolders', 'subFolders', 'fromTo'));
+        
+
     }
 
     /**
@@ -82,6 +91,12 @@ class ExtoutboxController extends Controller
         $mainFolders = MainFolder::pluck('name', 'id');
         $subFolders = SubFolder::pluck('name', 'id');
 
+        $offices = Office::pluck('name');
+        $administrations = Administration::pluck('name');
+        $departments = Department::pluck('name');
+
+        $fromTo = $offices->merge($departments)->merge($administrations)->values();
+        
         return view(
             'app.extoutboxes.edit',
             compact(
@@ -89,7 +104,8 @@ class ExtoutboxController extends Controller
                 'mainFolders',
                 'subFolders',
                 'mainFolders',
-                'subFolders'
+                'subFolders',
+                'fromTo'
             )
         );
     }

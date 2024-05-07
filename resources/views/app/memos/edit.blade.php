@@ -39,4 +39,13 @@
     </div>
 </form>
 
-@endsection
+@can('view-any', App\Models\Attachment::class)
+<div class="card mt-4">
+    <div class="card-header">
+        <h3 class="card-title">المرفقات</h3>
+    </div>
+    <div class="card-body">
+        <livewire:memo-attachments-detail :memo="$memo" />
+    </div>
+</div>
+@endcan @endsection

@@ -2,18 +2,13 @@
 
 <div class="row">
     <div class="mb-3 col-sm-12">
-        <label class="form-label">{{trans('crud.memos.inputs.number')}}</label>
+    <label class="form-label">{{trans('crud.memos.inputs.number')}}</label>
         <div class="input-group input-group-flat">
-            <input name="number" type="text" 
-            placeholder="{{trans('crud.memos.inputs.number')}}"
-            value="{{old('number', ($editing ? $intoutbox->number : ''))}}"
-            class="form-control text-end pe-0" 
-            autocomplete="off" required >
             <span class="input-group-text">
-                @if(!$editing)
-                {{ App\Models\Memo::GetFullCode() }}
-             @endif
+                {{ $editing? $memo->number : App\Models\Memo::GetFullCode() }}
             </span>
+            <input name="display" type="text" readonly value="" class="form-control text-end pe-0" autocomplete="off">
+            <input type="hidden" value="{{ $editing? $memo->number : App\Models\Memo::GetFullCode() }}" name="number">
         </div>
     </div>
 
@@ -62,7 +57,7 @@
     {{-- <x-inputs.group class="col-sm-12">
         <x-inputs.select name="main_folder_id" label="{{trans('crud.memos.inputs.main_folder_id')}}" required>
             @php $selected = old('main_folder_id', ($editing ? $memo->main_folder_id : '')) @endphp
-            <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Main Folder</option>
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>الرجاء اختيار المجلد الرئيسي</option>
             @foreach($mainFolders as $value => $label)
             <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
             @endforeach
@@ -72,7 +67,7 @@
     <x-inputs.group class="col-sm-12">
         <x-inputs.select name="sub_folder_id" label="{{trans('crud.memos.inputs.sub_folder_id')}}">
             @php $selected = old('sub_folder_id', ($editing ? $memo->sub_folder_id : '')) @endphp
-            <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Sub Folder</option>
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>الرجاء اختيار المجلد الفرعي</option>
             @foreach($subFolders as $value => $label)
             <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
             @endforeach

@@ -75,15 +75,6 @@
                         @lang('crud.intoutboxes.inputs.company_status')
                     </th>
                     <th class="text-left">
-                        @lang('crud.intoutboxes.inputs.main_folder_id')
-                    </th>
-                    <th class="text-left">
-                        @lang('crud.intoutboxes.inputs.sub_folder_id')
-                    </th>
-                    <th class="text-left">
-                        @lang('crud.intoutboxes.inputs.main_folder_id')
-                    </th>
-                    <th class="text-left">
                         @lang('crud.intoutboxes.inputs.sub_folder_id')
                     </th>
                     <th class="text-center">@lang('crud.common.actions')</th>
@@ -93,15 +84,12 @@
                 @forelse($intoutboxes as $intoutbox)
                 <tr>
                     <td>{{ $intoutbox->number ?? '-' }}</td>
-                    <td>{{ $intoutbox->registered_at ?? '-' }}</td>
-                    <td>{{ $intoutbox->issued_at ?? '-' }}</td>
+                    <td>{{ $intoutbox->registered_at->format('Y-d-m')?? '-' }}</td>
+                    <td>{{ $intoutbox->issued_at->format('Y-d-m') ?? '-' }}</td>
                     <td>{{ $intoutbox->sender ?? '-' }}</td>
                     <td>{{ $intoutbox->receiver ?? '-' }}</td>
                     <td>{{ $intoutbox->subject ?? '-' }}</td>
                     <td>{{ $intoutbox->company_status ?? '-' }}</td>
-                    <td>{{ optional($intoutbox->mainFolder)->name ?? '-' }}</td>
-                    <td>{{ optional($intoutbox->subFolder)->name ?? '-' }}</td>
-                    <td>{{ optional($intoutbox->mainFolder)->name ?? '-' }}</td>
                     <td>{{ optional($intoutbox->subFolder)->name ?? '-' }}</td>
                     <td class="text-center" style="width: 134px;">
                         <div

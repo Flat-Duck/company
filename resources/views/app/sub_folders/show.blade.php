@@ -64,13 +64,44 @@
             <div class="card-header">
                 <h3 class="text-left">الصادر الداخلي</h3>
             </div>
+            <div class="card-header">
+                <form>
+                    <div class="row g-2">
+                        <div class="input-icon col">
+                            <span class="input-icon-addon">
+                                <i class="ti ti-search"></i>
+                            </span>
+                            <input
+                                id="indexSearch"
+                                name="int_search"
+                                type="text"
+                                value="{{$int_search}}"
+                                class="form-control"
+                                placeholder="بحث ...."
+                                aria-label="Search..."
+                                spellcheck="false"
+                                data-ms-editor="true"
+                                autocomplete="off"
+                            />
+                        </div>
+                        <div class="col-auto">
+                            <button
+                                class="btn btn-icon btn-primary"
+                                aria-label="Button"
+                            >
+                                <i class="ti ti-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-vcenter text-nowrap">
                         <thead>
                             <tr>
                                 <th class="text-left">#</th>
-                                <th class="text-left"> @lang('crud.sub_folders.inputs.name') </th>
+                                <th class="text-left"> @lang('crud.memos.inputs.number') </th>
                                 <th class="text-left">@lang('crud.common.actions')</th>
                             </tr>
                         </thead>
@@ -106,13 +137,44 @@
             <div class="card-header">
                 <h3 class="text-left">الصادر الخارجي</h3>
             </div>
+            <div class="card-header">
+                <form>
+                    <div class="row g-2">
+                        <div class="input-icon col">
+                            <span class="input-icon-addon">
+                                <i class="ti ti-search"></i>
+                            </span>
+                            <input
+                                id="indexSearch"
+                                name="ext_search"
+                                type="text"
+                                value="{{$ext_search}}"
+                                class="form-control"
+                                placeholder="بحث ...."
+                                aria-label="Search..."
+                                spellcheck="false"
+                                data-ms-editor="true"
+                                autocomplete="off"
+                            />
+                        </div>
+                        <div class="col-auto">
+                            <button
+                                class="btn btn-icon btn-primary"
+                                aria-label="Button"
+                            >
+                                <i class="ti ti-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-vcenter text-nowrap">
                         <thead>
                             <tr>
                                 <th class="text-left">#</th>
-                                <th class="text-left"> @lang('crud.sub_folders.inputs.name') </th>
+                                <th class="text-left"> @lang('crud.memos.inputs.number') </th>
                                 <th class="text-left">@lang('crud.common.actions')</th>
                             </tr>
                         </thead>
@@ -148,13 +210,44 @@
             <div class="card-header">
                 <h3 class="text-left">الوارد</h3>
             </div>
+            <div class="card-header">
+                <form>
+                    <div class="row g-2">
+                        <div class="input-icon col">
+                            <span class="input-icon-addon">
+                                <i class="ti ti-search"></i>
+                            </span>
+                            <input
+                                id="indexSearch"
+                                name="inb_search"
+                                type="text"
+                                value="{{$inb_search}}"
+                                class="form-control"
+                                placeholder="بحث ...."
+                                aria-label="Search..."
+                                spellcheck="false"
+                                data-ms-editor="true"
+                                autocomplete="off"
+                            />
+                        </div>
+                        <div class="col-auto">
+                            <button
+                                class="btn btn-icon btn-primary"
+                                aria-label="Button"
+                            >
+                                <i class="ti ti-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-vcenter text-nowrap">
                         <thead>
                             <tr>
                                 <th class="text-left">#</th>
-                                <th class="text-left"> @lang('crud.sub_folders.inputs.name') </th>
+                                <th class="text-left"> @lang('crud.memos.inputs.number') </th>
                                 <th class="text-left">@lang('crud.common.actions')</th>
                             </tr>
                         </thead>
@@ -162,7 +255,7 @@
                             @forelse($inboxes as  $k=> $inbox)
                             <tr>
                                 <td>{{ $k+1 }}</td>
-                                <td>{{ $inbox->name ?? '-' }}</td>
+                                <td>{{ $inbox->number ?? '-' }}</td>
                                 <td class="text-left">
                                     @can('view', $inbox)
                                         <a href="{{ route('sub-folders.show', $inbox) }}" class="btn btn-icon btn-outline-info ms-1" >
@@ -190,13 +283,44 @@
             <div class="card-header">
                 <h3 class="text-left">معاملات أخرى</h3>
             </div>
+            <div class="card-header">
+                <form>
+                    <div class="row g-2">
+                        <div class="input-icon col">
+                            <span class="input-icon-addon">
+                                <i class="ti ti-search"></i>
+                            </span>
+                            <input
+                                id="indexSearch"
+                                name="mem_search"
+                                type="text"
+                                value="{{$mem_search}}"
+                                class="form-control"
+                                placeholder="بحث ...."
+                                aria-label="Search..."
+                                spellcheck="false"
+                                data-ms-editor="true"
+                                autocomplete="off"
+                            />
+                        </div>
+                        <div class="col-auto">
+                            <button
+                                class="btn btn-icon btn-primary"
+                                aria-label="Button"
+                            >
+                                <i class="ti ti-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-vcenter text-nowrap">
                         <thead>
                             <tr>
                                 <th class="text-left">#</th>
-                                <th class="text-left"> @lang('crud.sub_folders.inputs.name') </th>
+                                <th class="text-left">@lang('crud.memos.inputs.number') </th>
                                 <th class="text-left">@lang('crud.common.actions')</th>
                             </tr>
                         </thead>
@@ -204,10 +328,10 @@
                             @forelse($memos as  $k=> $memo)
                             <tr>
                                 <td>{{ $k+1 }}</td>
-                                <td>{{ $memo->name ?? '-' }}</td>
+                                <td>{{ $memo->number ?? '-' }}</td>
                                 <td class="text-left">
                                     @can('view', $memo)
-                                        <a href="{{ route('sub-folders.show', $memo) }}" class="btn btn-icon btn-outline-info ms-1" >
+                                        <a href="{{ route('memos.show', $memo) }}" class="btn btn-icon btn-outline-info ms-1" >
                                             <i class="ti ti-eye"></i>
                                         </a>
                                     @endcan

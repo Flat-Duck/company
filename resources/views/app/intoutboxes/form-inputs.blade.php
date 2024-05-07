@@ -1,19 +1,14 @@
 @php $editing = isset($intoutbox) @endphp
 
 <div class="row">
-    <div class="mb-3 col-sm-12">
+    <div class="mb-3 col-sm-12">    
         <label class="form-label">{{trans('crud.intoutboxes.inputs.number')}}</label>
         <div class="input-group input-group-flat">
-            <input name="number" type="text" 
-            placeholder="{{trans('crud.intoutboxes.inputs.number')}}"
-            value="{{old('number', ($editing ? $intoutbox->number : ''))}}"
-            class="form-control text-end pe-0" 
-            autocomplete="off" required >
             <span class="input-group-text">
-                @if(!$editing)
-                {{ App\Models\Intoutbox::GetFullCode() }}
-             @endif
+                {{ $editing? $intoutbox->number : App\Models\Intoutbox::GetFullCode() }}
             </span>
+            <input name="display" type="text" readonly value="" class="form-control text-end pe-0" autocomplete="off">
+            <input type="hidden" value="{{ $editing? $intoutbox->number : App\Models\Intoutbox::GetFullCode() }}" name="number">
         </div>
     </div>
 
@@ -37,7 +32,7 @@
         ></x-inputs.date>
     </x-inputs.group>
 
-    <x-inputs.group class="col-sm-12">
+    {{-- <x-inputs.group class="col-sm-12">
         <x-inputs.text
             name="sender"
             label="{{trans('crud.intoutboxes.inputs.sender')}}"
@@ -57,6 +52,26 @@
             placeholder="{{trans('crud.intoutboxes.inputs.receiver')}}"
             required
         ></x-inputs.text>
+    </x-inputs.group> --}}
+
+    <x-inputs.group class="col-sm-12">
+        <x-inputs.select name="sender" label="{{trans('crud.intoutboxes.inputs.sender')}}" required>
+            @php $selected = old('sender', ($editing ? $intoutbox->sender : '')) @endphp
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>الرجاء اختيار المرسل</option>
+            @foreach($fromTo as $value => $label)
+            <option value="{{ $label }}" {{ $selected == $label ? 'selected' : '' }} >{{ $label }}</option>
+            @endforeach
+        </x-inputs.select>
+    </x-inputs.group>
+
+    <x-inputs.group class="col-sm-12">
+        <x-inputs.select name="receiver" label="{{trans('crud.intoutboxes.inputs.receiver')}}" required>
+            @php $selected = old('receiver', ($editing ? $intoutbox->receiver : '')) @endphp
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>الرجاء اختيار المتلقي</option>
+            @foreach($fromTo as $value => $label)
+            <option value="{{ $label }}" {{ $selected == $label ? 'selected' : '' }} >{{ $label }}</option>
+            @endforeach
+        </x-inputs.select>
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
@@ -81,9 +96,9 @@
     </x-inputs.group>
 
     {{-- <x-inputs.group class="col-sm-12">
-        <x-inputs.select name="main_folder_id" label="Main Folder" required>
+        <x-inputs.select name="main_folder_id" label="المجلد الرئيسي" required>
             @php $selected = old('main_folder_id', ($editing ? $intoutbox->main_folder_id : '')) @endphp
-            <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Main Folder</option>
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>الرجاء اختيار المجلد الرئيسي</option>
             @foreach($mainFolders as $value => $label)
             <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
             @endforeach
@@ -91,9 +106,9 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
-        <x-inputs.select name="sub_folder_id" label="Sub Folder">
+        <x-inputs.select name="sub_folder_id" label="المجلد الفرعي">
             @php $selected = old('sub_folder_id', ($editing ? $intoutbox->sub_folder_id : '')) @endphp
-            <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Sub Folder</option>
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>الرجاء اختيار المجلد الفرعي</option>
             @foreach($subFolders as $value => $label)
             <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
             @endforeach

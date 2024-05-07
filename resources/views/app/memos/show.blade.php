@@ -31,7 +31,7 @@
                             <input
                                 type="text"
                                 class="form-control"
-                                value="{{ $memo->registered_at ?? '-' }}"
+                                value="{{ $memo->registered_at->format('Y-d-m')?? '-' }}"
                                 disabled=""
                             />
                         </div>
@@ -42,7 +42,7 @@
                             <input
                                 type="text"
                                 class="form-control"
-                                value="{{ $memo->issued_at ?? '-' }}"
+                                value="{{ $memo->issued_at->format('Y-d-m') ?? '-' }}"
                                 disabled=""
                             />
                         </div>
@@ -68,39 +68,7 @@
                                 disabled=""
                             />
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label"
-                                >@lang('crud.memos.inputs.main_folder_id')</label
-                            >
-                            <input
-                                type="text"
-                                class="form-control"
-                                value="{{ optional($memo->mainFolder)->name ?? '-' }}"
-                                disabled=""
-                            />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label"
-                                >@lang('crud.memos.inputs.sub_folder_id')</label
-                            >
-                            <input
-                                type="text"
-                                class="form-control"
-                                value="{{ optional($memo->subFolder)->name ?? '-' }}"
-                                disabled=""
-                            />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label"
-                                >@lang('crud.memos.inputs.main_folder_id')</label
-                            >
-                            <input
-                                type="text"
-                                class="form-control"
-                                value="{{ optional($memo->mainFolder)->name ?? '-' }}"
-                                disabled=""
-                            />
-                        </div>
+                        
                         <div class="mb-3">
                             <label class="form-label"
                                 >@lang('crud.memos.inputs.sub_folder_id')</label
