@@ -35,6 +35,40 @@
                                 disabled=""
                             />
                         </div>
+
+                        <div class="mb-3">
+                            <label class="form-label"
+                                >الهاتف</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                value="{{ $user->phone ?? '-' }}"
+                                disabled=""
+                            />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label"
+                                >الجنس</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                value="{{ $user->gender ?? '-' }}"
+                                disabled=""
+                            />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label"
+                                >الحالة</label
+                            >
+                            @if ($user->active)
+                        <span class="badge bg-lime text-lime-fg">مفعل</span>
+                        @else
+                        <span class="badge bg-red text-red-fg">غير مفعل</span>                        
+                        @endif
+                        </div>
                         <div class="mb-3">
                             <label class="form-label"
                                 >@lang('crud.roles.name')</label
