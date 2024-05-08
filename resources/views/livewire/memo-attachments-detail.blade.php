@@ -17,15 +17,13 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">{{ $modalTitle }}</h5>
-                <button
-                    type="button"
-                    class="btn-close close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                    data-bs-dismiss="modal"
-                    >
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn close badge bg-red text-red-fg badge-pill" wire:click="$toggle('showingModal')" data-dismiss="modal" aria-label="Close" data-bs-dismiss="modal" style="
+                max-width: 25px;
+                max-height: 25px;
+                margin-top: 0px;
+                margin-left: -40px;
+                ">
+                <i class="ti ti-x"></i> </button>
             </div>
 
             <div class="modal-body">
