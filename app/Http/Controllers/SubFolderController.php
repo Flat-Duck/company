@@ -69,10 +69,10 @@ class SubFolderController extends Controller
         $inb_search = $request->get('inb_search', '');
         $mem_search = $request->get('mem_search', '');
         
-        $intouts = $subFolder->intoutboxes()->search($int_search)->paginate(50)->withQueryString();
-        $extouts = $subFolder->extoutboxes()->search($ext_search)->paginate(50)->withQueryString();
-        $inboxes = $subFolder->inboxes()->search($inb_search)->paginate(50)->withQueryString();
-        $memos = $subFolder->memos()->search($mem_search)->paginate(50)->withQueryString();
+        $intouts = $subFolder->intoutboxes()->search($int_search)->paginate(5)->withQueryString();
+        $extouts = $subFolder->extoutboxes()->search($ext_search)->paginate(5)->withQueryString();
+        $inboxes = $subFolder->inboxes()->search($inb_search)->paginate(5)->withQueryString();
+        $memos = $subFolder->memos()->search($mem_search)->paginate(5)->withQueryString();
 
         return view('app.sub_folders.show', compact('subFolder', 'intouts', 'extouts','inboxes', 'memos',
                                                     'int_search', 'ext_search', 'inb_search', 'mem_search',));

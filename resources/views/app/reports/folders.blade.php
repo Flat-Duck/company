@@ -10,6 +10,16 @@
 <div class="page-body">
     <div class="container-xl">
         <div class="card">
+            <div class="card-header">
+                <a href="#" onclick="window.print()" class="mr-4 btn btn-info d-print-none">
+                    <i class="ti ti-printer"></i> طباعة
+                </a>
+                <div class="d-flex text-center m-auto">
+                    <h3 class="card-title ">
+                        {{ $type }}
+                    </h3>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table class="table" id="dataTable">
                     <thead>

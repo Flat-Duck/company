@@ -2,10 +2,10 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center d-print-none">
-        <x-state color="bg-cyan-lt" icon="external-link-off" title="إجمالي الصادر الداخلي" subtitle="{{ \App\Models\Extoutbox::count() }}" />
-        <x-state color="bg-azure-lt" icon="external-link" title="إجمالي الصادر الخارجي" subtitle="{{ \App\Models\Intoutbox::count() }}" />
-        <x-state color="bg-indigo-lt" icon="inbox" title="إجمالي الوارد " subtitle="{{ \App\Models\Inbox::count() }}" />
-        <x-state color="bg-blue-lt" icon="clipboard-typography" title="إجمالي المعاملات الاخرى " subtitle="{{ \App\Models\Memo::count() }}" />
+        <x-state color="bg-cyan-lt" icon="external-link-off" title="الصادر الداخلي" subtitle="{{ \App\Models\Extoutbox::count() }}" />
+        <x-state color="bg-azure-lt" icon="external-link" title="الصادر الخارجي" subtitle="{{ \App\Models\Intoutbox::count() }}" />
+        <x-state color="bg-indigo-lt" icon="inbox" title="رسائل الوارد" subtitle="{{ \App\Models\Inbox::count() }}" />
+        <x-state color="bg-blue-lt" icon="clipboard-typography" title="المعاملات الاخرى " subtitle="{{ \App\Models\Memo::count() }}" />
     </div>
     <div class="row justify-content-center mt-4">
         <div class="col-md-12">

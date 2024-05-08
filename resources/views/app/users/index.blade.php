@@ -55,6 +55,8 @@
                 <tr>
                     <th class="text-left">@lang('crud.users.inputs.name')</th>
                     <th class="text-left">@lang('crud.users.inputs.email')</th>
+                    <th class="text-left">الجنس</th>
+                    <th class="text-left">رقم الهاتف</th>
                     <th class="text-left">الحالة</th>
                     <th class="text-center">@lang('crud.common.actions')</th>
                 </tr>
@@ -64,6 +66,8 @@
                 <tr>
                     <td>{{ $user->name ?? '-' }}</td>
                     <td>{{ $user->email ?? '-' }}</td>
+                    <td>{{ $user->gender ?? '-' }}</td>
+                    <td>{{ $user->phone ?? '-' }}</td>
                     <td>
                         @if ($user->active)
                         <span class="badge bg-lime text-lime-fg">مفعل</span>

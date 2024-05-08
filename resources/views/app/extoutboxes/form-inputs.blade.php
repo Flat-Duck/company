@@ -16,8 +16,9 @@
     <x-inputs.group class="col-sm-12">
         <x-inputs.date
             name="registered_at"
+            readonly
             label="{{trans('crud.extoutboxes.inputs.registered_at')}}"
-            value="{{ old('registered_at', ($editing ? optional($extoutbox->registered_at)->format('Y-m-d') : '')) }}"
+            value="{{ old('registered_at', ($editing ? optional($extoutbox->registered_at)->format('Y-m-d') : now()->format('Y-m-d'))) }}"
             max="255"
             required
         ></x-inputs.date>
@@ -44,6 +45,16 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
+        <x-inputs.text
+            name="receiver"
+            label="{{trans('crud.extoutboxes.inputs.receiver')}}"
+            :value="old('receiver', ($editing ? $extoutbox->receiver : ''))"
+            maxlength="255"
+            placeholder="{{trans('crud.extoutboxes.inputs.receiver')}}"
+            required
+        ></x-inputs.text>
+    </x-inputs.group>
+    {{-- <x-inputs.group class="col-sm-12">
         <x-inputs.select name="receiver" label="{{trans('crud.extoutboxes.inputs.receiver')}}" required>
             @php $selected = old('receiver', ($editing ? $extoutbox->receiver : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>الرجاء اختيار المتلقي</option>
@@ -51,7 +62,7 @@
             <option value="{{ $label }}" {{ $selected == $label ? 'selected' : '' }} >{{ $label }}</option>
             @endforeach
         </x-inputs.select>
-    </x-inputs.group>
+    </x-inputs.group> --}}
 
     <x-inputs.group class="col-sm-12">
         <x-inputs.textarea

@@ -15,8 +15,9 @@
     <x-inputs.group class="col-sm-12">
         <x-inputs.date
             name="registered_at"
+            readonly
             label="{{trans('crud.inboxes.inputs.registered_at')}}"
-            value="{{ old('registered_at', ($editing ? optional($inbox->registered_at)->format('Y-m-d') : '')) }}"
+            value="{{ old('registered_at', ($editing ? optional($inbox->registered_at)->format('Y-m-d') : now()->format('Y-m-d'))) }}"
             max="255"
             required
         ></x-inputs.date>
@@ -32,7 +33,7 @@
         ></x-inputs.date>
     </x-inputs.group>
 
-    {{-- <x-inputs.group class="col-sm-12">
+    <x-inputs.group class="col-sm-12">
         <x-inputs.text
             name="sender"
             label="{{trans('crud.inboxes.inputs.sender')}}"
@@ -43,7 +44,7 @@
         ></x-inputs.text>
     </x-inputs.group>
 
-    <x-inputs.group class="col-sm-12">
+    {{-- <x-inputs.group class="col-sm-12">
         <x-inputs.text
             name="receiver"
             label="{{trans('crud.inboxes.inputs.receiver')}}"
@@ -52,8 +53,8 @@
             placeholder="{{trans('crud.inboxes.inputs.receiver')}}"
             required
         ></x-inputs.text>
-    </x-inputs.group> --}}
-
+    </x-inputs.group>  --}}
+{{-- 
     <x-inputs.group class="col-sm-12">
         <x-inputs.select name="sender" label="{{trans('crud.inboxes.inputs.sender')}}" required>
             @php $selected = old('sender', ($editing ? $inbox->sender : '')) @endphp
@@ -62,7 +63,7 @@
             <option value="{{ $label }}" {{ $selected == $label ? 'selected' : '' }} >{{ $label }}</option>
             @endforeach
         </x-inputs.select>
-    </x-inputs.group>
+    </x-inputs.group> --}}
 
     <x-inputs.group class="col-sm-12">
         <x-inputs.select name="receiver" label="{{trans('crud.inboxes.inputs.receiver')}}" required>

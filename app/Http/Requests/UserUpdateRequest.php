@@ -23,7 +23,7 @@ class UserUpdateRequest extends FormRequest
         return [
             'name' => ['required', 'max:255', 'string'],
             'gender' => ['required', 'in:ذكر,أنثى'],
-            'phone' => ['required', 'max:255', 'string'],
+            'phone' => ['required', 'numeric','digits:10'],
             'email' => [
                 'required',
                 Rule::unique('users', 'email')->ignore($this->user),

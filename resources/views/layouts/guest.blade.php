@@ -20,9 +20,11 @@
     <div class="page page-center">
       <div class="container container-tight py-4">
         <div class="text-center mb-4">
-          <a href="." class="navbar-brand navbar-brand-autodark">            
+          <a href="." class="navbar-brand navbar-brand-autodark">
             <img src="/img/logo-bx.png" width="110" height="48" alt="company" class="navbar-brand-image" style="height: 4rem !important;">
           </a>
+          <h3>وزارة المالية </h3>
+          <h4>صندوق تصفية الشركات العامة والاجهزة المنحلة</h4>
         </div>
         @yield('content')
       </div>

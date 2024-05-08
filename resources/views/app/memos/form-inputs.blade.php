@@ -15,8 +15,9 @@
     <x-inputs.group class="col-sm-12">
         <x-inputs.date
             name="registered_at"
+            readonly
             label="{{trans('crud.memos.inputs.registered_at')}}"
-            value="{{ old('registered_at', ($editing ? optional($memo->registered_at)->format('Y-m-d') : '')) }}"
+            value="{{ old('registered_at', ($editing ? optional($memo->registered_at)->format('Y-m-d') : now()->format('Y-m-d'))) }}"
             max="255"
             required
         ></x-inputs.date>
