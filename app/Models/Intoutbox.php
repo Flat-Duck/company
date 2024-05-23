@@ -77,15 +77,23 @@ class Intoutbox extends Model
         parent::boot();
         static::created(function ($model) {
             
-            // $model->number = self::GetFullCode();
-            // $model->save();
-
             $activity = new Activity();
             $activity->user_id = Auth::id();
             $activity->type = Activity::ADD;
             $activity->name = self::NAME;
             $activity->link = self::link($model->id);
             $activity->description = " قام " .Auth::user()->name. " ب".Activity::ADD." " .self::NAME. " بتاريخ " .$model->created_at->format('Y-d-m');
+            $activity->save();
+        });
+        
+        static::updated(function ($model) {
+            
+            $activity = new Activity();
+            $activity->user_id = Auth::id();
+            $activity->type = Activity::EDIT;
+            $activity->name = self::NAME;
+            $activity->link = self::link($model->id);
+            $activity->description = " قام " .Auth::user()->name. " ب".Activity::EDIT." " .self::NAME. " بتاريخ " .$model->updated_at->format('Y-d-m');
             $activity->save();
         });
     }
