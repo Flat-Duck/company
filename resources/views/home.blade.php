@@ -45,7 +45,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse(\App\Models\Activity::all()  as $k=> $activity)
+                                    @forelse(\App\Models\Activity::latest()->get()  as $k=> $activity)
                                         <tr>
                                             <td>{{ $k+1 }}</td>
                                             <td>{{ $activity->name ?? '-' }}</td>
