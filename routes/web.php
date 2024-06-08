@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActivityController;
+use App\Models\Activity;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -30,8 +31,9 @@ use App\Http\Controllers\ReportController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    $activities = Activity::latest()->paginate(5);
+    return view('home',compact('activities'));
+})->middleware('auth');
 
 Auth::routes();
 
